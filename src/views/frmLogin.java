@@ -5,6 +5,7 @@
  */
 package views;
 
+import business.SecurityController;
 import complements.TextPlaceholder;
 import model.Colaborador;
 import model.Persona;
@@ -15,11 +16,12 @@ import model.Persona;
  */
 public class frmLogin extends javax.swing.JFrame {
 
+    private static final SecurityController securityController = new SecurityController();
+
     /**
      * Creates new form frmLogin
      */
     public frmLogin() {
-
         initComponents();
         this.setLocationRelativeTo(null);
         txtUsuario.requestFocus();
@@ -164,9 +166,8 @@ public class frmLogin extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void login() {
-       
-        
-        
-        
+
+        securityController.login("", "");
+
     }
 }

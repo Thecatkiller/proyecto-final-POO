@@ -1,0 +1,2 @@
+identificador|usuario|clave
+1|diego1|123
