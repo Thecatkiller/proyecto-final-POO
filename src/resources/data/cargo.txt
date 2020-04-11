@@ -1,3 +1,6 @@
 identificador|nombreCargo
 1|Gerente General
-2|Vendedor
+2|Cajero
+3|Motorizado
+4|Vendedor
+5|Limpieza
