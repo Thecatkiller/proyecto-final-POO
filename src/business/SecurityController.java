@@ -12,10 +12,13 @@ import model.User;
 public class SecurityController {
 
     public User login(String username, String password) {
-
         List<User> usuarios = DataReader.leerArchivoLista(Constants.Archivos.USUARIOS);
 
-        return new User(1, null, null);
+        return usuarios.stream()
+                .filter((usuario) -> usuario.getUsuario().equals(username)
+                && usuario.getClave().equals(password))
+                .findFirst()
+                .orElse(null);
     }
 
 }

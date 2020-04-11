@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,7 +64,7 @@ public final class DataReader {
 
     public static <T> List<T> leerArchivoLista(Constants.Archivos archivo) {
         final File archivoLeer = new File(archivo.getPath());
-        List<T> lista = null;
+        List<T> lista;
         try {
             final FileReader lector = new FileReader(archivoLeer);
             final BufferedReader buffer = new BufferedReader(lector);
@@ -76,7 +77,7 @@ public final class DataReader {
             while ((linea = buffer.readLine()) != null) {
                 String[] partes = linea.split(Constants.SEPARADOR_ARCHIVO);
 
-                T obj = (T) Class.forName("model.User").newInstance();
+                T obj = (T) Class.forName(archivo.getModelPackage()).newInstance();
 
                 for (int i = 0; i < cabecera.length; i++) {
                     setField(obj, cabecera[i], partes[i]);

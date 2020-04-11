@@ -19,12 +19,14 @@ public final class Constants {
     }
 
     public enum Archivos {
-        USUARIOS("user.txt"),
-        PRODUCTOS("productos.txt");
+        USUARIOS("user.txt", "model.User"),
+        PRODUCTOS("productos.txt", "model.Product");
 
         private final String path;
+        private final String modelPackage;
 
-        private Archivos(String path) {
+        private Archivos(String path, String modelPackage) {
+            this.modelPackage = modelPackage;
             this.path = path;
         }
 
@@ -32,6 +34,9 @@ public final class Constants {
             return PATH_ARCHIVOS + this.path;
         }
 
+        public String getModelPackage() {
+            return this.modelPackage;
+        }
     }
 
 }

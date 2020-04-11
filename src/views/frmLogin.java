@@ -7,8 +7,11 @@ package views;
 
 import business.SecurityController;
 import complements.TextPlaceholder;
+import static javax.swing.JOptionPane.showMessageDialog;
 import model.Colaborador;
 import model.Persona;
+import model.User;
+import util.GlobalVariables;
 
 /**
  *
@@ -167,7 +170,16 @@ public class frmLogin extends javax.swing.JFrame {
 
     private void login() {
 
-        securityController.login("", "");
+        User usuario = securityController.login(txtUsuario.getText(), txtPasword.getText());
+
+        if (usuario == null) {
+            showMessageDialog(this, "Credenciales inválidas");
+        } else {
+            GlobalVariables.USUARIO_SESION = usuario;
+            frmPrincipal frm = new frmPrincipal();
+            this.setVisible(false);
+            frm.setVisible(true);
+        }
 
     }
 }
