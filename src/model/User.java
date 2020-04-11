@@ -5,11 +5,14 @@
  */
 package model;
 
+import business.LectorDatos;
+import static complements.Constants.SEPARADOR_ARCHIVO;
+
 /**
  *
  * @author Diego Sebastian
  */
-public class User {
+public class User implements LectorDatos {
 
     private int identificador;
     private String usuario;
@@ -35,6 +38,14 @@ public class User {
 
     public String getClave() {
         return clave;
+    }
+
+    @Override
+    public void leerObjeto(String linea) {
+        String[] datos = linea.split(SEPARADOR_ARCHIVO);
+        this.identificador = Integer.parseInt(datos[0]);
+        this.usuario = datos[1];
+        this.clave = datos[2];
     }
 
 }

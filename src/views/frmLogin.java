@@ -5,6 +5,7 @@
  */
 package views;
 
+import business.ColaboradorController;
 import business.SecurityController;
 import complements.TextPlaceholder;
 import static javax.swing.JOptionPane.showMessageDialog;
@@ -30,6 +31,9 @@ public class frmLogin extends javax.swing.JFrame {
         txtUsuario.requestFocus();
         new TextPlaceholder(" usuario ", txtUsuario);
         new TextPlaceholder(" clave ", txtPasword);
+        
+        new ColaboradorController().getColaboradores();
+        
     }
 
     /**

@@ -1,10 +1,13 @@
 package model;
 
+import business.LectorDatos;
+import static complements.Constants.SEPARADOR_ARCHIVO;
+
 /**
  *
  * @author Diego Sebastian
  */
-public class CargoColaborador {
+public class CargoColaborador implements LectorDatos {
 
     public CargoColaborador() {
 
@@ -38,4 +41,12 @@ public class CargoColaborador {
     public String toString() {
         return nombreCargo;
     }
+
+    @Override
+    public void leerObjeto(String linea) {
+        String[] datos = linea.split(SEPARADOR_ARCHIVO);
+        this.identificador = Integer.parseInt(datos[0]);
+        this.nombreCargo = datos[1];
+    }
+
 }

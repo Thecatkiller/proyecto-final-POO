@@ -31,6 +31,11 @@ public class Documento {
             return this.descripcion;
         }
 
+        @Override
+        public String toString() {
+            return this.descripcion;
+        }
+
     }
 
     public Documento(TipoDocumento tipo, String codigo) {

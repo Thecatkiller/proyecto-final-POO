@@ -6,13 +6,18 @@ import java.util.Date;
  *
  * @author Diego Sebastian
  */
-public abstract class Persona {      
-    protected Documento documentoIdentidad;  
+public abstract class Persona {
+
+    protected Documento documentoIdentidad;
     protected String nombres;
     protected String apellidoPaterno;
-    protected String apellidoMaterno;  
-    protected Date fechaNacimiento; 
-    protected Genero genero;  
+    protected String apellidoMaterno;
+    protected Date fechaNacimiento;
+    protected Genero genero;
+
+    public Persona() {
+
+    }
 
     public Persona(Documento documentoIdentidad,
             String nombres,
@@ -52,5 +57,5 @@ public abstract class Persona {
         return genero;
     }
     
-    
+
 }

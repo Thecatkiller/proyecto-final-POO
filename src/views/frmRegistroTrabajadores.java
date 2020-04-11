@@ -6,7 +6,12 @@
 package views;
 
 import business.ColaboradorController;
+import static complements.Constants.DATE_FORMATE_DD_MM_YYYY;
+import java.util.List;
 import static javax.swing.JOptionPane.showMessageDialog;
+import javax.swing.table.DefaultTableModel;
+import model.CargoColaborador;
+import model.Colaborador;
 import model.Documento;
 import model.Genero;
 import util.JTextFieldLimit;
@@ -26,15 +31,15 @@ public class frmRegistroTrabajadores extends javax.swing.JFrame {
     public frmRegistroTrabajadores() {
         initComponents();
         colaboradorController.getCargosColaborador().forEach(x -> {
-            jCmbCargo.addItem(x.toString());
+            jCmbCargo.addItem(x);
         });
 
         for (Documento.TipoDocumento doc : Documento.TipoDocumento.values()) {
-            jCmbTipoDocumento.addItem(doc.getDescripcion());
+            jCmbTipoDocumento.addItem(doc);
         }
 
         for (Genero genero : Genero.values()) {
-            jCmbSexo.addItem(genero.getDescripcion());
+            jCmbSexo.addItem(genero);
         }
 
         // Con esto se define una longitud maxima para los campos
@@ -43,6 +48,22 @@ public class frmRegistroTrabajadores extends javax.swing.JFrame {
         jTxtApellidoPaterno.setDocument(new JTextFieldLimit(45));
         jTxtDocumento.setDocument(new JTextFieldLimit(12));
         jTxtSueldo.setDocument(new JTextFieldLimit(15));
+
+        DefaultTableModel model = (DefaultTableModel) jTblRegistro.getModel();
+
+        colaboradorController.getColaboradores().forEach(x -> {
+            model.addRow(
+                    new Object[]{
+                        x.getNombres(),
+                        x.getApellidoPaterno(),
+                        x.getApellidoMaterno(),
+                        DATE_FORMATE_DD_MM_YYYY.format(x.getFechaNacimiento()),
+                        x.getDocumentoIdentidad().getTipo().getDescripcion() + " - "
+                        + x.getDocumentoIdentidad().getCodigo(),
+                        x.getCargo().getNombreCargo(),
+                        x.getSueldo()
+                    });
+        });
 
         UIHelper.limpiarControles(jPanelControles);
         UIHelper.cambiarEstadoControles(jPanelControles, false);
@@ -62,7 +83,7 @@ public class frmRegistroTrabajadores extends javax.swing.JFrame {
         jBtnGuardar = new javax.swing.JButton();
         jBtnCancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTblRegistro = new javax.swing.JTable();
         jPanelControles = new javax.swing.JPanel();
         jTxtApellidoMaterno = new javax.swing.JTextField();
         jCmbCargo = new javax.swing.JComboBox<>();
@@ -109,19 +130,19 @@ public class frmRegistroTrabajadores extends javax.swing.JFrame {
         jBtnCancelar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jBtnCancelar.setText("Cancelar");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTblRegistro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nombres", "Apellido Paterno", "Apellido Materno", "Fecha Nacimiento", "Tipo Documento", "Documento", "Cargo", "Sueldo"
+                "Nombres", "Apellido Paterno", "Apellido Materno", "Fecha Nacimiento", "Documento", "Cargo", "Sueldo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -132,7 +153,7 @@ public class frmRegistroTrabajadores extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTblRegistro);
 
         jTxtApellidoMaterno.setToolTipText("Ingrese apellido materno");
 
@@ -256,7 +277,7 @@ public class frmRegistroTrabajadores extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jPanelControles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 310, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jBtnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
                     .addComponent(jBtnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -265,8 +286,8 @@ public class frmRegistroTrabajadores extends javax.swing.JFrame {
                 .addGap(33, 33, 33))
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,9 +362,9 @@ public class frmRegistroTrabajadores extends javax.swing.JFrame {
     private javax.swing.JButton jBtnGuardar;
     private javax.swing.JButton jBtnModificar;
     private javax.swing.JButton jBtnNuevo;
-    private javax.swing.JComboBox<String> jCmbCargo;
-    private javax.swing.JComboBox<String> jCmbSexo;
-    private javax.swing.JComboBox<String> jCmbTipoDocumento;
+    private javax.swing.JComboBox<model.CargoColaborador> jCmbCargo;
+    private javax.swing.JComboBox<model.Genero> jCmbSexo;
+    private javax.swing.JComboBox<model.Documento.TipoDocumento> jCmbTipoDocumento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -355,7 +376,7 @@ public class frmRegistroTrabajadores extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanelControles;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTblRegistro;
     private javax.swing.JTextField jTxtApellidoMaterno;
     private javax.swing.JTextField jTxtApellidoPaterno;
     private javax.swing.JTextField jTxtDocumento;
@@ -375,9 +396,17 @@ public class frmRegistroTrabajadores extends javax.swing.JFrame {
         if (!camposValidos) {
             showMessageDialog(this, "Ingrese todos los datos");
         } else {
-
+            colaboradorController.agregarColaborador(
+                    jTxtNombres.getText(),
+                    jTxtApellidoPaterno.getText(),
+                    jTxtApellidoMaterno.getText(),
+                    (Documento.TipoDocumento) jCmbTipoDocumento.getSelectedItem(),
+                    jTxtDocumento.getText(),
+                    jTxtFechaNacimiento.getText(),
+                    (Genero) jCmbSexo.getSelectedItem(),
+                    Double.parseDouble(jTxtSueldo.getText()),
+                    (CargoColaborador) jCmbCargo.getSelectedItem());
         }
-
     }
 
 }

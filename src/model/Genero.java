@@ -4,19 +4,23 @@ package model;
  *
  * @author Diego Sebastian
  */
-public enum Genero {   
+public enum Genero {
     MASCULINO("Masculino"),
     FEMENINO("Femenino"),
     NO_BINARIO("No binario");
-    
+
     private final String descripcion;
-    
-    Genero(String descripcion){
+
+    Genero(String descripcion) {
         this.descripcion = descripcion;
     }
-    
-    public String getDescripcion(){
+
+    public String getDescripcion() {
         return this.descripcion;
     }
-    
+
+    @Override
+    public String toString() {
+        return this.descripcion;
+    }
 }

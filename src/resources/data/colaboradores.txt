@@ -1,0 +1,2 @@
+Diego Sebastian|Calderon|Alvarado|3500|DNI|74715976|MASCULINO|15-12-1999|1
+Melisa|Bravo|Verastegui|1500.0|DNI|21351251|FEMENINO|24-12-1999|4

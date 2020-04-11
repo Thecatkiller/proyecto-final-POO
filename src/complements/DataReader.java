@@ -1,10 +1,13 @@
 package complements;
 
+import static business.LectorDatos.NOMBRE_METODO_LEER;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.lang.reflect.Field;
-import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +55,8 @@ public final class DataReader {
                 field.set(targetObject, Long.parseLong(fieldValue.toString()));
             } else if (Integer.class.equals(clazz) || int.class.equals(clazz)) {
                 field.set(targetObject, Integer.parseInt(fieldValue.toString()));
+            } else if (Double.class.equals(clazz) || double.class.equals(clazz)) {
+                field.set(targetObject, Double.parseDouble(fieldValue.toString()));
             } else {
                 field.set(targetObject, fieldValue);
             }
@@ -69,20 +74,12 @@ public final class DataReader {
             final FileReader lector = new FileReader(archivoLeer);
             final BufferedReader buffer = new BufferedReader(lector);
 
-            String linea = buffer.readLine();
-
-            String[] cabecera = linea.split(Constants.SEPARADOR_ARCHIVO);
             lista = new ArrayList<>();
-
+            String linea;
             while ((linea = buffer.readLine()) != null) {
-                String[] partes = linea.split(Constants.SEPARADOR_ARCHIVO);
-
                 T obj = (T) Class.forName(archivo.getModelPackage()).newInstance();
-
-                for (int i = 0; i < cabecera.length; i++) {
-                    setField(obj, cabecera[i], partes[i]);
-                }
-
+                Method method = obj.getClass().getMethod(NOMBRE_METODO_LEER, String.class);
+                method.invoke(obj, linea);
                 lista.add(obj);
             }
 
@@ -90,6 +87,19 @@ public final class DataReader {
             lista = null;
         }
         return lista;
+    }
+
+    public static void agregarRegistro(Constants.Archivos archivo, Object data) {
+        try {
+            BufferedWriter writer = new BufferedWriter(
+                    new FileWriter(archivo.getPath(), true) //Set true for append mode
+            );
+            writer.newLine();   //Add new line
+            writer.write(data.toString());
+            writer.close();
+        } catch (Exception ex) {
+
+        }
     }
 
 }

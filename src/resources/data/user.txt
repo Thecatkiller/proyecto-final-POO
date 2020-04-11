@@ -1,4 +1,3 @@
-identificador|usuario|clave
 1|diego1|123
 2|melisa|123
 3|test|123

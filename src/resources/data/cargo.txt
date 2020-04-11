@@ -1,4 +1,3 @@
-identificador|nombreCargo
 1|Gerente General
 2|Cajero
 3|Motorizado
