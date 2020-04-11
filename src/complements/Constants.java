@@ -20,7 +20,8 @@ public final class Constants {
 
     public enum Archivos {
         USUARIOS("user.txt", "model.User"),
-        PRODUCTOS("productos.txt", "model.Product");
+        PRODUCTOS("productos.txt", "model.Product"),
+        CARGOS_COLABORADOR("cargo.txt", "model.CargoColaborador");
 
         private final String path;
         private final String modelPackage;

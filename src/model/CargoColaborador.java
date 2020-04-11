@@ -5,7 +5,11 @@ package model;
  * @author Diego Sebastian
  */
 public class CargoColaborador {
-    
+
+    public CargoColaborador() {
+
+    }
+
     private int identificador;
     private String nombreCargo;
 
@@ -29,6 +33,9 @@ public class CargoColaborador {
         this.identificador = identificador;
         this.nombreCargo = nombreCargo;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return nombreCargo;
+    }
 }
