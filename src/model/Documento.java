@@ -10,16 +10,27 @@ package model;
  * @author Diego Sebastian
  */
 public class Documento {
-    
+
     private TipoDocumento tipo;
     private String codigo;
 
     public enum TipoDocumento {
-        DNI,
-        PASAPORTE,
-        CARNET_EXTRANJERIA,
-        RUC,
-        PARTIDA_NACIMIENTO            
+        DNI("DNI"),
+        PASAPORTE("Pasaporte"),
+        CARNET_EXTRANJERIA("Carnet Extranjeria"),
+        RUC("RUC"),
+        PARTIDA_NACIMIENTO("Partida Nacimiento");
+
+        private final String descripcion;
+
+        private TipoDocumento(String descripcion) {
+            this.descripcion = descripcion;
+        }
+
+        public String getDescripcion() {
+            return this.descripcion;
+        }
+
     }
 
     public Documento(TipoDocumento tipo, String codigo) {
@@ -42,7 +53,5 @@ public class Documento {
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
-    
-    
-    
+
 }
