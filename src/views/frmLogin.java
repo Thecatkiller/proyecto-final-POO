@@ -6,6 +6,8 @@
 package views;
 
 import complements.TextPlaceholder;
+import model.Colaborador;
+import model.Persona;
 
 /**
  *
@@ -87,9 +89,9 @@ public class frmLogin extends javax.swing.JFrame {
                     .addComponent(txtPasword))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(132, Short.MAX_VALUE)
+                .addContainerGap(120, Short.MAX_VALUE)
                 .addComponent(btnIngresar)
-                .addGap(129, 129, 129))
+                .addGap(115, 115, 115))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,9 +104,9 @@ public class frmLogin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtPasword))
-                .addGap(36, 36, 36)
+                .addGap(29, 29, 29)
                 .addComponent(btnIngresar)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -115,7 +117,7 @@ public class frmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-
+        login();
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**
@@ -160,4 +162,11 @@ public class frmLogin extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtPasword;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    private void login() {
+       
+        
+        
+        
+    }
 }
