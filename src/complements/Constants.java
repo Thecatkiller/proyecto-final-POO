@@ -11,6 +11,7 @@ package complements;
  */
 public final class Constants {
 
+    public static final String STRING_EMPTY = "";
     private static final String PATH_ARCHIVOS = "src/resources/data/";
     public static final String SEPARADOR_ARCHIVO = "\\|";
 
