@@ -7,11 +7,9 @@ package views;
 
 import business.ColaboradorController;
 import static complements.Constants.DATE_FORMATE_DD_MM_YYYY;
-import java.util.List;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
 import model.CargoColaborador;
-import model.Colaborador;
 import model.Documento;
 import model.Genero;
 import util.JTextFieldLimit;
@@ -90,7 +88,7 @@ public class frmRegistroTrabajadores extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jCmbSexo = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Trabajadores");
 
         jBtnNuevo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -188,15 +186,14 @@ public class frmRegistroTrabajadores extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(jPanelControlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jCmbCargo, 0, 216, Short.MAX_VALUE)
-                    .addGroup(jPanelControlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTxtSueldo)
-                        .addComponent(jTxtDocumento)
-                        .addComponent(jCmbTipoDocumento, 0, 216, Short.MAX_VALUE)
-                        .addComponent(jCmbSexo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTxtApellidoPaterno)
-                        .addComponent(jTxtNombres)
-                        .addComponent(jTxtApellidoMaterno, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jTxtFechaNacimiento, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addComponent(jTxtSueldo)
+                    .addComponent(jTxtDocumento)
+                    .addComponent(jCmbTipoDocumento, 0, 216, Short.MAX_VALUE)
+                    .addComponent(jCmbSexo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTxtApellidoPaterno)
+                    .addComponent(jTxtNombres)
+                    .addComponent(jTxtApellidoMaterno, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTxtFechaNacimiento, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         jPanelControlesLayout.setVerticalGroup(

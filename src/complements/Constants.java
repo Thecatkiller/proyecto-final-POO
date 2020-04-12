@@ -30,7 +30,8 @@ public final class Constants {
         PRODUCTOS("productos.txt", "model.Producto"),
         CARGOS_COLABORADOR("cargo.txt", "model.CargoColaborador"),
         CATEROGORIA_PRODUCTOS("categoria_productos.txt", "model.CategoriaProducto"),
-        COLABORADORES("colaboradores.txt", "model.Colaborador");
+        COLABORADORES("colaboradores.txt", "model.Colaborador"),
+        PROVEEDORES("proveedor.txt", "model.Proveedor");
 
         private final String path;
         private final String modelPackage;

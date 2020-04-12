@@ -2,7 +2,7 @@
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="title" type="java.lang.String" value="Registro de Trabajadores"/>
   </Properties>
   <SyntheticProperties>
@@ -203,16 +203,14 @@
                   <EmptySpace pref="28" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jCmbCargo" pref="216" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jTxtSueldo" max="32767" attributes="0"/>
-                          <Component id="jTxtDocumento" max="32767" attributes="0"/>
-                          <Component id="jCmbTipoDocumento" pref="216" max="32767" attributes="0"/>
-                          <Component id="jCmbSexo" max="32767" attributes="0"/>
-                          <Component id="jTxtApellidoPaterno" max="32767" attributes="0"/>
-                          <Component id="jTxtNombres" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jTxtApellidoMaterno" alignment="1" max="32767" attributes="0"/>
-                          <Component id="jTxtFechaNacimiento" alignment="1" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="jTxtSueldo" max="32767" attributes="0"/>
+                      <Component id="jTxtDocumento" max="32767" attributes="0"/>
+                      <Component id="jCmbTipoDocumento" pref="216" max="32767" attributes="0"/>
+                      <Component id="jCmbSexo" max="32767" attributes="0"/>
+                      <Component id="jTxtApellidoPaterno" max="32767" attributes="0"/>
+                      <Component id="jTxtNombres" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jTxtApellidoMaterno" alignment="1" max="32767" attributes="0"/>
+                      <Component id="jTxtFechaNacimiento" alignment="1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>

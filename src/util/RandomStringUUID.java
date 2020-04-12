@@ -13,12 +13,16 @@ import java.util.UUID;
  */
 public final class RandomStringUUID {
 
+    public static String getUUID16() {
+        return RandomStringUUID.getUUID().substring(0, 16);
+    }
+
     public static String getUUID8() {
         return RandomStringUUID.getUUID().substring(0, 8);
     }
 
     public static String getUUID() {
         UUID uuid = UUID.randomUUID();
-        return uuid.toString().substring(0, 8).toUpperCase();
+        return uuid.toString().toUpperCase();
     }
 }

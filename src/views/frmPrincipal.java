@@ -37,6 +37,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         jbtnRegistroProductos = new javax.swing.JButton();
         jbtnIngresoStock = new javax.swing.JButton();
         jbtnPuntoVenta = new javax.swing.JButton();
+        jbtnRegistroProveedores = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,6 +69,13 @@ public class frmPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jbtnRegistroProveedores.setText("<html><p>Registro Proveedores</p><p style=\"text-align: center;\"> ( F5 ) </p></html>");
+        jbtnRegistroProveedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnRegistroProveedoresActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -75,24 +83,29 @@ public class frmPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbtnRegistroTrabajadores, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jbtnRegistroTrabajadores, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbtnRegistroProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jbtnRegistroProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbtnIngresoStock, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbtnPuntoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(455, Short.MAX_VALUE))
+                .addContainerGap(268, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jbtnRegistroTrabajadores, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtnRegistroTrabajadores, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnRegistroProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(jbtnRegistroProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(jbtnIngresoStock, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(jbtnPuntoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -113,6 +126,10 @@ public class frmPrincipal extends javax.swing.JFrame {
     private void jbtnPuntoVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPuntoVentaActionPerformed
 
     }//GEN-LAST:event_jbtnPuntoVentaActionPerformed
+
+    private void jbtnRegistroProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRegistroProveedoresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnRegistroProveedoresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,6 +170,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jbtnIngresoStock;
     private javax.swing.JButton jbtnPuntoVenta;
     private javax.swing.JButton jbtnRegistroProductos;
+    private javax.swing.JButton jbtnRegistroProveedores;
     private javax.swing.JButton jbtnRegistroTrabajadores;
     // End of variables declaration//GEN-END:variables
 
@@ -176,11 +194,16 @@ public class frmPrincipal extends javax.swing.JFrame {
         frm.setVisible(true);
     }
 
+    private void registroProveedor() {
+        frmRegistroProveedor frm = new frmRegistroProveedor();
+        frm.setVisible(true);
+    }
+
     private void bindKeys() {
         Action actionF1 = new AbstractAction("<html><p>Registro Trabajadores</p><p style=\"text-align: center;\"> ( F1 ) </p></html>") {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ingresoStock();
+                registroTrabajadores();
             }
         };
         Action actionF2 = new AbstractAction("<html><p>Registro Productos</p><p style=\"text-align: center;\"> ( F2 ) </p></html>") {
@@ -201,11 +224,18 @@ public class frmPrincipal extends javax.swing.JFrame {
                 puntoVenta();
             }
         };
+        Action actionF5 = new AbstractAction("<html><p>Registro Proveedores</p><p style=\"text-align: center;\"> ( F5 ) </p></html>") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                registroProveedor();
+            }
+        };
 
         UIHelper.bindKeyToButton(jbtnRegistroTrabajadores, actionF1, "F1");
         UIHelper.bindKeyToButton(jbtnRegistroProductos, actionF2, "F2");
         UIHelper.bindKeyToButton(jbtnIngresoStock, actionF3, "F3");
         UIHelper.bindKeyToButton(jbtnPuntoVenta, actionF4, "F4");
+        UIHelper.bindKeyToButton(jbtnRegistroProveedores, actionF5, "F5");
     }
 
 }

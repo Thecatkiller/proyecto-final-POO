@@ -346,7 +346,7 @@ public class frmPuntoVenta extends javax.swing.JFrame {
         jTblProductos.setFont(new java.awt.Font("Calibri", 0, 21)); // NOI18N
         jTblProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                { new Integer(5), null, null, null, null, null}
+
             },
             new String [] {
                 "Cantidad", "Descripción", "Precio Unitario", "Descuento", "IGV", "Importe Total"
