@@ -28,6 +28,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jbtnRegistroTrabajadores = new javax.swing.JButton();
+        jbtnRegistroProductos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -38,13 +39,22 @@ public class frmPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jbtnRegistroProductos.setText("Registro Trabajadores");
+        jbtnRegistroProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnRegistroProductosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jbtnRegistroTrabajadores, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbtnRegistroTrabajadores, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnRegistroProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(455, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -52,7 +62,9 @@ public class frmPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jbtnRegistroTrabajadores, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(340, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(jbtnRegistroProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(252, Short.MAX_VALUE))
         );
 
         pack();
@@ -61,6 +73,10 @@ public class frmPrincipal extends javax.swing.JFrame {
     private void jbtnRegistroTrabajadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRegistroTrabajadoresActionPerformed
         registroTrabajadores();
     }//GEN-LAST:event_jbtnRegistroTrabajadoresActionPerformed
+
+    private void jbtnRegistroProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRegistroProductosActionPerformed
+        registroProductos();
+    }//GEN-LAST:event_jbtnRegistroProductosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -98,11 +114,17 @@ public class frmPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jbtnRegistroProductos;
     private javax.swing.JButton jbtnRegistroTrabajadores;
     // End of variables declaration//GEN-END:variables
 
     private void registroTrabajadores() {
         frmRegistroTrabajadores frm = new frmRegistroTrabajadores();
+        frm.setVisible(true);
+    }
+    
+    private void registroProductos() {
+        frmRegistroProductos frm = new frmRegistroProductos();
         frm.setVisible(true);
     }
 }

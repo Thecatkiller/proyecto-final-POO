@@ -91,10 +91,19 @@ public final class DataReader {
 
     public static void agregarRegistro(Constants.Archivos archivo, Object data) {
         try {
+            BufferedReader reader = new BufferedReader(new FileReader(archivo.getPath()));
+            int lines = 0;
+            if (reader.readLine() != null) {
+                lines++;
+            }
+            reader.close();
+
             BufferedWriter writer = new BufferedWriter(
                     new FileWriter(archivo.getPath(), true) //Set true for append mode
             );
-            writer.newLine();   //Add new line
+            if (lines > 0) {
+                writer.newLine();   //Add new line
+            }
             writer.write(data.toString());
             writer.close();
         } catch (Exception ex) {

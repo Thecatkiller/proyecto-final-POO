@@ -3,7 +3,6 @@ package business;
 import complements.Constants;
 import static complements.Constants.DATE_FORMATE_DD_MM_YYYY;
 import complements.DataReader;
-import java.sql.Date;
 import java.text.ParseException;
 import java.util.List;
 import java.util.logging.Level;
@@ -11,7 +10,6 @@ import java.util.logging.Logger;
 import model.CargoColaborador;
 import model.Colaborador;
 import model.Documento;
-import model.Documento.TipoDocumento;
 import model.Genero;
 
 /**

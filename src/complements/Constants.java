@@ -27,7 +27,7 @@ public final class Constants {
 
     public enum Archivos {
         USUARIOS("user.txt", "model.User"),
-        PRODUCTOS("productos.txt", "model.Product"),
+        PRODUCTOS("productos.txt", "model.Producto"),
         CARGOS_COLABORADOR("cargo.txt", "model.CargoColaborador"),
         COLABORADORES("colaboradores.txt", "model.Colaborador");
 
