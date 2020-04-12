@@ -28,6 +28,14 @@ public class ProductosController {
         return DataReader.leerArchivoLista(Constants.Archivos.PRODUCTOS);
     }
 
+    public Producto getProductoById(String idProducto) {
+        return this.listarProductos()
+                .stream()
+                .filter(x -> x.getCodigo().equals(idProducto))
+                .findFirst()
+                .orElse(null);
+    }
+
     public void agregarProducto(
             String codigo,
             String nombre,

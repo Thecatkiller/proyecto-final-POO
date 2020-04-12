@@ -29,6 +29,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         jbtnRegistroTrabajadores = new javax.swing.JButton();
         jbtnRegistroProductos = new javax.swing.JButton();
+        jbtnIngresoStock = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -39,10 +40,17 @@ public class frmPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jbtnRegistroProductos.setText("Registro Trabajadores");
+        jbtnRegistroProductos.setText("Registro Productos");
         jbtnRegistroProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnRegistroProductosActionPerformed(evt);
+            }
+        });
+
+        jbtnIngresoStock.setText("Ingreso Stock");
+        jbtnIngresoStock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnIngresoStockActionPerformed(evt);
             }
         });
 
@@ -54,7 +62,8 @@ public class frmPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jbtnRegistroTrabajadores, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnRegistroProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbtnRegistroProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnIngresoStock, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(455, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -64,7 +73,9 @@ public class frmPrincipal extends javax.swing.JFrame {
                 .addComponent(jbtnRegistroTrabajadores, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(jbtnRegistroProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(252, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(jbtnIngresoStock, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(164, Short.MAX_VALUE))
         );
 
         pack();
@@ -77,6 +88,10 @@ public class frmPrincipal extends javax.swing.JFrame {
     private void jbtnRegistroProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRegistroProductosActionPerformed
         registroProductos();
     }//GEN-LAST:event_jbtnRegistroProductosActionPerformed
+
+    private void jbtnIngresoStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnIngresoStockActionPerformed
+        ingresoStock();
+    }//GEN-LAST:event_jbtnIngresoStockActionPerformed
 
     /**
      * @param args the command line arguments
@@ -114,6 +129,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jbtnIngresoStock;
     private javax.swing.JButton jbtnRegistroProductos;
     private javax.swing.JButton jbtnRegistroTrabajadores;
     // End of variables declaration//GEN-END:variables
@@ -125,6 +141,11 @@ public class frmPrincipal extends javax.swing.JFrame {
     
     private void registroProductos() {
         frmRegistroProductos frm = new frmRegistroProductos();
+        frm.setVisible(true);
+    }
+    
+    private void ingresoStock() {
+        frmIngresoStock frm = new frmIngresoStock();
         frm.setVisible(true);
     }
 }

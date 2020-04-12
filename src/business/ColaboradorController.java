@@ -34,6 +34,14 @@ public class ColaboradorController {
         return DataReader.leerArchivoLista(Constants.Archivos.COLABORADORES);
     }
 
+    public Colaborador getColaboradorByDocumento(String documento) {
+        return this.getColaboradores()
+                .stream()
+                .filter(x -> x.getDocumentoIdentidad().getCodigo().equals(documento))
+                .findFirst()
+                .orElse(null);
+    }
+
     public void agregarColaborador(
             String nombres,
             String apellidoPaterno,
