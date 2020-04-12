@@ -54,7 +54,7 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="jbtnRegistroTrabajadores">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Registro Trabajadores"/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;p&gt;Registro Trabajadores&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt; ( F1 ) &lt;/p&gt;&lt;/html&gt;"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnRegistroTrabajadoresActionPerformed"/>
@@ -62,7 +62,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jbtnRegistroProductos">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Registro Productos"/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;p&gt;Registro Productos&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt; ( F2 ) &lt;/p&gt;&lt;/html&gt;"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnRegistroProductosActionPerformed"/>
@@ -70,7 +70,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jbtnIngresoStock">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ingreso Stock"/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;p&gt;Ingreso Stock&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt; ( F3 ) &lt;/p&gt;&lt;/html&gt;"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnIngresoStockActionPerformed"/>
@@ -78,7 +78,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jbtnPuntoVenta">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Punto de Venta"/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;p&gt;Punto de venta&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt; ( F4 ) &lt;/p&gt;&lt;/html&gt;"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnPuntoVentaActionPerformed"/>

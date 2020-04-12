@@ -2,16 +2,32 @@ package util;
 
 import complements.Constants;
 import java.awt.Component;
+import javax.swing.Action;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 
 /**
  *
  * @author Diego Sebastian
  */
-public class UIHelper {
+public final class UIHelper {
+
+    private UIHelper() {
+
+    }
+
+    public static void bindKeyToButton(JButton btn, Action action, String keyStroke) {
+        action.putValue(Action.ACCELERATOR_KEY, KeyStroke.getKeyStroke(keyStroke));
+        btn.setAction(action);
+        btn.getActionMap().put(keyStroke, action);
+        btn.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+                (KeyStroke) action.getValue(Action.ACCELERATOR_KEY), keyStroke);
+    }
 
     public static void cambiarEstadoControles(JPanel jPanelControles, boolean activo) {
         Component[] components = jPanelControles.getComponents();

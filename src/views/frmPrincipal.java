@@ -5,6 +5,11 @@
  */
 package views;
 
+import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import util.UIHelper;
+
 /**
  *
  * @author Diego Sebastian
@@ -16,6 +21,7 @@ public class frmPrincipal extends javax.swing.JFrame {
      */
     public frmPrincipal() {
         initComponents();
+        bindKeys();
     }
 
     /**
@@ -34,28 +40,28 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jbtnRegistroTrabajadores.setText("Registro Trabajadores");
+        jbtnRegistroTrabajadores.setText("<html><p>Registro Trabajadores</p><p style=\"text-align: center;\"> ( F1 ) </p></html>");
         jbtnRegistroTrabajadores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnRegistroTrabajadoresActionPerformed(evt);
             }
         });
 
-        jbtnRegistroProductos.setText("Registro Productos");
+        jbtnRegistroProductos.setText("<html><p>Registro Productos</p><p style=\"text-align: center;\"> ( F2 ) </p></html>");
         jbtnRegistroProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnRegistroProductosActionPerformed(evt);
             }
         });
 
-        jbtnIngresoStock.setText("Ingreso Stock");
+        jbtnIngresoStock.setText("<html><p>Ingreso Stock</p><p style=\"text-align: center;\"> ( F3 ) </p></html>");
         jbtnIngresoStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnIngresoStockActionPerformed(evt);
             }
         });
 
-        jbtnPuntoVenta.setText("Punto de Venta");
+        jbtnPuntoVenta.setText("<html><p>Punto de venta</p><p style=\"text-align: center;\"> ( F4 ) </p></html>");
         jbtnPuntoVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnPuntoVentaActionPerformed(evt);
@@ -93,19 +99,19 @@ public class frmPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnRegistroTrabajadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRegistroTrabajadoresActionPerformed
-        registroTrabajadores();
+
     }//GEN-LAST:event_jbtnRegistroTrabajadoresActionPerformed
 
     private void jbtnRegistroProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRegistroProductosActionPerformed
-        registroProductos();
+
     }//GEN-LAST:event_jbtnRegistroProductosActionPerformed
 
     private void jbtnIngresoStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnIngresoStockActionPerformed
-        ingresoStock();
+
     }//GEN-LAST:event_jbtnIngresoStockActionPerformed
 
     private void jbtnPuntoVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPuntoVentaActionPerformed
-        puntoVenta();
+
     }//GEN-LAST:event_jbtnPuntoVentaActionPerformed
 
     /**
@@ -154,19 +160,52 @@ public class frmPrincipal extends javax.swing.JFrame {
         frmRegistroTrabajadores frm = new frmRegistroTrabajadores();
         frm.setVisible(true);
     }
-    
+
     private void registroProductos() {
         frmRegistroProductos frm = new frmRegistroProductos();
         frm.setVisible(true);
     }
-    
+
     private void ingresoStock() {
         frmIngresoStock frm = new frmIngresoStock();
         frm.setVisible(true);
     }
-    
+
     private void puntoVenta() {
         frmPuntoVenta frm = new frmPuntoVenta();
         frm.setVisible(true);
     }
+
+    private void bindKeys() {
+        Action actionF1 = new AbstractAction("<html><p>Registro Trabajadores</p><p style=\"text-align: center;\"> ( F1 ) </p></html>") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ingresoStock();
+            }
+        };
+        Action actionF2 = new AbstractAction("<html><p>Registro Productos</p><p style=\"text-align: center;\"> ( F2 ) </p></html>") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                registroProductos();
+            }
+        };
+        Action actionF3 = new AbstractAction("<html><p>Ingreso Stock</p><p style=\"text-align: center;\"> ( F3 ) </p></html>") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ingresoStock();
+            }
+        };
+        Action actionF4 = new AbstractAction("<html><p>Punto de venta</p><p style=\"text-align: center;\"> ( F4 ) </p></html>") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                puntoVenta();
+            }
+        };
+
+        UIHelper.bindKeyToButton(jbtnRegistroTrabajadores, actionF1, "F1");
+        UIHelper.bindKeyToButton(jbtnRegistroProductos, actionF2, "F2");
+        UIHelper.bindKeyToButton(jbtnIngresoStock, actionF3, "F3");
+        UIHelper.bindKeyToButton(jbtnPuntoVenta, actionF4, "F4");
+    }
+
 }
