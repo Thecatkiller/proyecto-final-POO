@@ -6,6 +6,8 @@
 package views;
 
 import business.ProveedorController;
+import exception.ProveedorYaExisteException;
+import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JRootPane;
 import model.Documento;
@@ -200,6 +202,11 @@ public class frmRegistroProveedor extends javax.swing.JFrame {
 
         jBtnCancelar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jBtnCancelar.setText("Cerrar");
+        jBtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -263,6 +270,10 @@ public class frmRegistroProveedor extends javax.swing.JFrame {
     private void jTxtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtTelefonoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtTelefonoActionPerformed
+
+    private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
+        cancelar();
+    }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -336,16 +347,28 @@ public class frmRegistroProveedor extends javax.swing.JFrame {
         if (!camposValidos) {
             showMessageDialog(this, "Ingrese todos los datos");
         } else {
-            proveedorController.registrarProveedor(
-                    jTxtNombre.getText(),
-                    jTxtRazonSocial.getText(),
-                    jTxtDomicilio.getText(),
-                    jTxtTelefono.getText(),
-                    jTxtCelular.getText(),
-                    jTxtSitioWeb.getText(),
-                    jTxtEmail.getText(),
-                    (model.Documento.TipoDocumento) jCmbTipoDocumento.getSelectedItem(),
-                    jTxtDocumento.getText());
+            try {
+                proveedorController.registrarProveedor(
+                        jTxtNombre.getText(),
+                        jTxtRazonSocial.getText(),
+                        jTxtDomicilio.getText(),
+                        jTxtTelefono.getText(),
+                        jTxtCelular.getText(),
+                        jTxtSitioWeb.getText(),
+                        jTxtEmail.getText(),
+                        (model.Documento.TipoDocumento) jCmbTipoDocumento.getSelectedItem(),
+                        jTxtDocumento.getText());
+            } catch (ProveedorYaExisteException ex) {
+                JOptionPane.showMessageDialog(
+                        this,
+                        ex.getMessage(),
+                        "Error",
+                        JOptionPane.WARNING_MESSAGE);
+            }
         }
+    }
+
+    private void cancelar() {
+        this.dispose();
     }
 }
