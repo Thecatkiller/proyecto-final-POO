@@ -29,6 +29,7 @@
                   <Component id="jbtnRegistroTrabajadores" alignment="0" min="-2" pref="169" max="-2" attributes="0"/>
                   <Component id="jbtnRegistroProductos" alignment="0" min="-2" pref="169" max="-2" attributes="0"/>
                   <Component id="jbtnIngresoStock" alignment="0" min="-2" pref="169" max="-2" attributes="0"/>
+                  <Component id="jbtnPuntoVenta" alignment="0" min="-2" pref="169" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="455" max="32767" attributes="0"/>
           </Group>
@@ -43,7 +44,9 @@
               <Component id="jbtnRegistroProductos" min="-2" pref="60" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Component id="jbtnIngresoStock" min="-2" pref="60" max="-2" attributes="0"/>
-              <EmptySpace pref="164" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <Component id="jbtnPuntoVenta" min="-2" pref="60" max="-2" attributes="0"/>
+              <EmptySpace pref="76" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -71,6 +74,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnIngresoStockActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jbtnPuntoVenta">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Punto de Venta"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnPuntoVentaActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
