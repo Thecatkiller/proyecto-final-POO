@@ -29,6 +29,7 @@ public final class Constants {
         USUARIOS("user.txt", "model.User"),
         PRODUCTOS("productos.txt", "model.Producto"),
         CARGOS_COLABORADOR("cargo.txt", "model.CargoColaborador"),
+        CATEROGORIA_PRODUCTOS("categoria_productos.txt", "model.CategoriaProducto"),
         COLABORADORES("colaboradores.txt", "model.Colaborador");
 
         private final String path;

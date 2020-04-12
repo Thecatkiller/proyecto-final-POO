@@ -1,2 +1,5 @@
-44E5F45B|Guitarra Fender|500.0
-8222AF35|Guitarra Gibson|525.0
+44E5F45B|1|Guitarra Fender|500.0
+8222AF35|1|Guitarra Gibson|525.0
+89CB67F8|2|Bajo Fender X10|1250.8
+2937B8E0|3|Piano Yamaha JT50|5000.5
+8EDC0258|2|Fender American Professinal Precision|3500.0
