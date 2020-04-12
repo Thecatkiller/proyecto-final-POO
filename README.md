@@ -5,3 +5,5 @@ Funcionalidades:
 1. Login
 2. Registro de empleados
 3. Registro de productos
+4. Punto de venta
+
