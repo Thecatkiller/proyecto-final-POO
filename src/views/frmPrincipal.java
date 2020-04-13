@@ -5,9 +5,23 @@
  */
 package views;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JRootPane;
+import javax.swing.KeyStroke;
 import util.UIHelper;
 
 /**
@@ -16,11 +30,23 @@ import util.UIHelper;
  */
 public class frmPrincipal extends javax.swing.JFrame {
 
+    private enum Formularios {
+        PUNTO_VENTA,
+        TRABAJADORES,
+        PRODUCTOS,
+        STOCK,
+        PROVEEDORES
+    }
+
+    private static HashMap<Formularios, JInternalFrame> mapFormularios;
+
     /**
      * Creates new form frmPrincipal
      */
     public frmPrincipal() {
+
         initComponents();
+        inicializar();
         bindKeys();
     }
 
@@ -38,74 +64,119 @@ public class frmPrincipal extends javax.swing.JFrame {
         jbtnIngresoStock = new javax.swing.JButton();
         jbtnPuntoVenta = new javax.swing.JButton();
         jbtnRegistroProveedores = new javax.swing.JButton();
+        jDesktopPanePrincipal = new javax.swing.JDesktopPane();
+        jInternalFramePrincipal = new javax.swing.JInternalFrame();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Gestión de relación con clientes (CRM)");
 
-        jbtnRegistroTrabajadores.setText("<html><p>Registro Trabajadores</p><p style=\"text-align: center;\"> ( F1 ) </p></html>");
+        jbtnRegistroTrabajadores.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jbtnRegistroTrabajadores.setText("<html><p><u style=\"font-weight:bold\">T</u>rabajadores</p></html>");
         jbtnRegistroTrabajadores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnRegistroTrabajadoresActionPerformed(evt);
             }
         });
 
-        jbtnRegistroProductos.setText("<html><p>Registro Productos</p><p style=\"text-align: center;\"> ( F2 ) </p></html>");
+        jbtnRegistroProductos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jbtnRegistroProductos.setText("<html><p><u style=\"font-weight:bold\">P</u>roductos</p></html>");
         jbtnRegistroProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnRegistroProductosActionPerformed(evt);
             }
         });
 
-        jbtnIngresoStock.setText("<html><p>Ingreso Stock</p><p style=\"text-align: center;\"> ( F3 ) </p></html>");
+        jbtnIngresoStock.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jbtnIngresoStock.setText("<html><p><u style=\"font-weight:bold\">S</u>tock</p></html>");
         jbtnIngresoStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnIngresoStockActionPerformed(evt);
             }
         });
 
-        jbtnPuntoVenta.setText("<html><p>Punto de venta</p><p style=\"text-align: center;\"> ( F4 ) </p></html>");
+        jbtnPuntoVenta.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jbtnPuntoVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/venta_32.png"))); // NOI18N
+        jbtnPuntoVenta.setText("<html><p><u style=\"font-weight:bold\">V</u>entas</p><p style=\"text-align: center;\"></html>");
         jbtnPuntoVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnPuntoVentaActionPerformed(evt);
             }
         });
 
-        jbtnRegistroProveedores.setText("<html><p>Registro Proveedores</p><p style=\"text-align: center;\"> ( F5 ) </p></html>");
+        jbtnRegistroProveedores.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jbtnRegistroProveedores.setText("<html><p>Pr<u style=\"font-weight:bold\">o</u>veedores</p></html>");
         jbtnRegistroProveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnRegistroProveedoresActionPerformed(evt);
             }
         });
 
+        javax.swing.GroupLayout jDesktopPanePrincipalLayout = new javax.swing.GroupLayout(jDesktopPanePrincipal);
+        jDesktopPanePrincipal.setLayout(jDesktopPanePrincipalLayout);
+        jDesktopPanePrincipalLayout.setHorizontalGroup(
+            jDesktopPanePrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jDesktopPanePrincipalLayout.setVerticalGroup(
+            jDesktopPanePrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jInternalFramePrincipal.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jInternalFramePrincipal.setPreferredSize(new java.awt.Dimension(1000, 600));
+        jInternalFramePrincipal.setVisible(true);
+
+        javax.swing.GroupLayout jInternalFramePrincipalLayout = new javax.swing.GroupLayout(jInternalFramePrincipal.getContentPane());
+        jInternalFramePrincipal.getContentPane().setLayout(jInternalFramePrincipalLayout);
+        jInternalFramePrincipalLayout.setHorizontalGroup(
+            jInternalFramePrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jInternalFramePrincipalLayout.setVerticalGroup(
+            jInternalFramePrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 442, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbtnRegistroProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnIngresoStock, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnRegistroProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnRegistroTrabajadores, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnPuntoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbtnRegistroTrabajadores, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbtnRegistroProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jbtnRegistroProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnIngresoStock, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnPuntoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(268, Short.MAX_VALUE))
+                        .addGap(1025, 1025, 1025)
+                        .addComponent(jDesktopPanePrincipal))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jInternalFramePrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE)
+                        .addGap(20, 20, 20))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtnRegistroTrabajadores, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnRegistroProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(jbtnRegistroProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(jbtnIngresoStock, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(jbtnPuntoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(jDesktopPanePrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jbtnPuntoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbtnRegistroTrabajadores, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbtnRegistroProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(jbtnIngresoStock, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbtnRegistroProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jInternalFramePrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -167,6 +238,8 @@ public class frmPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane jDesktopPanePrincipal;
+    private javax.swing.JInternalFrame jInternalFramePrincipal;
     private javax.swing.JButton jbtnIngresoStock;
     private javax.swing.JButton jbtnPuntoVenta;
     private javax.swing.JButton jbtnRegistroProductos;
@@ -175,67 +248,128 @@ public class frmPrincipal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void registroTrabajadores() {
-        frmRegistroTrabajadores frm = new frmRegistroTrabajadores();
-        frm.setVisible(true);
+        setFullSizeJInternalFrame(Formularios.TRABAJADORES);
+        jInternalFramePrincipal.setTitle("Trabajadores");
     }
 
     private void registroProductos() {
-        frmRegistroProductos frm = new frmRegistroProductos();
-        frm.setVisible(true);
+        setFullSizeJInternalFrame(Formularios.PRODUCTOS);
+        jInternalFramePrincipal.setTitle("Productos");
     }
 
     private void ingresoStock() {
-        frmIngresoStock frm = new frmIngresoStock();
-        frm.setVisible(true);
+        setFullSizeJInternalFrame(Formularios.STOCK);
+        jInternalFramePrincipal.setTitle("Stock productos");
     }
 
     private void puntoVenta() {
-        frmPuntoVenta frm = new frmPuntoVenta();
-        frm.setVisible(true);
+        setFullSizeJInternalFrame(Formularios.PUNTO_VENTA);
+        jInternalFramePrincipal.setTitle("Punto de venta");
     }
 
     private void registroProveedor() {
-        frmRegistroProveedor frm = new frmRegistroProveedor();
-        frm.setVisible(true);
+        setFullSizeJInternalFrame(Formularios.PROVEEDORES);
+        jInternalFramePrincipal.setTitle("Proveedores");
+    }
+
+    private void setFullSizeJInternalFrame(Formularios formulario) {
+
+        for (Formularios form : Formularios.values()) {
+            mapFormularios.get(form).setVisible(false);
+        }
+
+        Dimension d = jInternalFramePrincipal.getSize();
+        mapFormularios.get(formulario).setVisible(true);
+        mapFormularios.get(formulario).setSize(d.width, d.height);
+    }
+
+    private void inicializar() {
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        jInternalFramePrincipal.putClientProperty("JInternalFrame.isPalette", Boolean.TRUE);
+        jInternalFramePrincipal.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
+        jInternalFramePrincipal.repaint();
+        getContentPane().setBackground(new java.awt.Color(236, 236, 236));
+
+        mapFormularios = new HashMap<>();
+
+        frmPuntoVenta frmPuntoVenta = new frmPuntoVenta();
+        frmPuntoVenta.setLocation(-1, -24);
+        jInternalFramePrincipal.add(frmPuntoVenta);
+
+        frmRegistroTrabajadores frmRegistroTrabajadores = new frmRegistroTrabajadores();
+        frmRegistroTrabajadores.setLocation(-1, -24);
+        jInternalFramePrincipal.add(frmRegistroTrabajadores);
+
+        frmRegistroProductos frmRegistroProductos = new frmRegistroProductos();
+        frmRegistroProductos.setLocation(-1, -24);
+        jInternalFramePrincipal.add(frmRegistroProductos);
+
+        frmIngresoStock frmIngresoStock = new frmIngresoStock();
+        frmIngresoStock.setLocation(-1, -24);
+        jInternalFramePrincipal.add(frmIngresoStock);
+
+        frmRegistroProveedor frmRegistroProveedor = new frmRegistroProveedor();
+        frmRegistroProveedor.setLocation(-1, -24);
+        jInternalFramePrincipal.add(frmRegistroProveedor);
+
+        mapFormularios.put(Formularios.PUNTO_VENTA, frmPuntoVenta);
+        mapFormularios.put(Formularios.TRABAJADORES, frmRegistroTrabajadores);
+        mapFormularios.put(Formularios.PRODUCTOS, frmRegistroProductos);
+        mapFormularios.put(Formularios.STOCK, frmIngresoStock);
+        mapFormularios.put(Formularios.PROVEEDORES, frmRegistroProveedor);
     }
 
     private void bindKeys() {
-        Action actionF1 = new AbstractAction("<html><p>Registro Trabajadores</p><p style=\"text-align: center;\"> ( F1 ) </p></html>") {
+        Action shiftT = new AbstractAction(
+                "<html><p><u style=\"font-weight:bold\">T</u>rabajadores</p></html>",
+                new ImageIcon(getClass().getResource("/resources/empleados_32.png"))
+        ) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 registroTrabajadores();
             }
         };
-        Action actionF2 = new AbstractAction("<html><p>Registro Productos</p><p style=\"text-align: center;\"> ( F2 ) </p></html>") {
+        Action shiftP = new AbstractAction(
+                "<html><p><u style=\"font-weight:bold\">P</u>roductos</p></html>",
+                new ImageIcon(getClass().getResource("/resources/caja_32.png"))
+        ) {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e
+            ) {
                 registroProductos();
             }
         };
-        Action actionF3 = new AbstractAction("<html><p>Ingreso Stock</p><p style=\"text-align: center;\"> ( F3 ) </p></html>") {
+        Action shiftS = new AbstractAction(
+                "<html><p><u style=\"font-weight:bold\">S</u>tock</p></html>",
+                new ImageIcon(getClass().getResource("/resources/almacen_32.png"))) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ingresoStock();
             }
         };
-        Action actionF4 = new AbstractAction("<html><p>Punto de venta</p><p style=\"text-align: center;\"> ( F4 ) </p></html>") {
+        Action shiftV = new AbstractAction(
+                "<html><p><u style=\"font-weight:bold\">V</u>entas</p><p style=\"text-align: center;\"></html>",
+                new ImageIcon(getClass().getResource("/resources/venta_32.png"))) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 puntoVenta();
             }
         };
-        Action actionF5 = new AbstractAction("<html><p>Registro Proveedores</p><p style=\"text-align: center;\"> ( F5 ) </p></html>") {
+        Action shiftO = new AbstractAction(
+                "<html><p>Pr<u style=\"font-weight:bold\">o</u>veedores</p></html>",
+                new ImageIcon(getClass().getResource("/resources/proveedor_32.png"))) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 registroProveedor();
             }
         };
 
-        UIHelper.bindKeyToButton(jbtnRegistroTrabajadores, actionF1, "F1");
-        UIHelper.bindKeyToButton(jbtnRegistroProductos, actionF2, "F2");
-        UIHelper.bindKeyToButton(jbtnIngresoStock, actionF3, "F3");
-        UIHelper.bindKeyToButton(jbtnPuntoVenta, actionF4, "F4");
-        UIHelper.bindKeyToButton(jbtnRegistroProveedores, actionF5, "F5");
+        UIHelper.bindKeyToButton(jbtnRegistroTrabajadores, shiftT, KeyStroke.getKeyStroke(KeyEvent.VK_T, InputEvent.SHIFT_MASK));
+        UIHelper.bindKeyToButton(jbtnRegistroProductos, shiftP, KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.SHIFT_MASK));
+        UIHelper.bindKeyToButton(jbtnIngresoStock, shiftS, KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.SHIFT_MASK));
+        UIHelper.bindKeyToButton(jbtnPuntoVenta, shiftV, KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.SHIFT_MASK));
+        UIHelper.bindKeyToButton(jbtnRegistroProveedores, shiftO, KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.SHIFT_MASK));
+
     }
 
 }

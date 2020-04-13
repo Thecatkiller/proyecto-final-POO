@@ -29,6 +29,14 @@ public final class UIHelper {
                 (KeyStroke) action.getValue(Action.ACCELERATOR_KEY), keyStroke);
     }
 
+    public static void bindKeyToButton(JButton btn, Action action, KeyStroke keyStroke) {
+        action.putValue(Action.ACCELERATOR_KEY, keyStroke);
+        btn.setAction(action);
+        btn.getActionMap().put(keyStroke.toString(), action);
+        btn.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+                (KeyStroke) action.getValue(Action.ACCELERATOR_KEY), keyStroke.toString());
+    }
+
     public static void cambiarEstadoControles(JPanel jPanelControles, boolean activo) {
         Component[] components = jPanelControles.getComponents();
         for (Component component : components) {
