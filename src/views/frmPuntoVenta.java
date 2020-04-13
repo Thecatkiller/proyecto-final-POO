@@ -8,6 +8,7 @@ package views;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.ImageIcon;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
 import util.UIHelper;
@@ -54,13 +55,13 @@ public class frmPuntoVenta extends javax.swing.JInternalFrame {
         jPanelAcciones = new javax.swing.JPanel();
         jBtnBorrarLista = new javax.swing.JButton();
         jBtnResumen = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jBtnIngresos = new javax.swing.JButton();
+        jBtnEgresos = new javax.swing.JButton();
         jBtnArqueo = new javax.swing.JButton();
         jBtnDevolver = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        jBtnBuscarVenta = new javax.swing.JButton();
         jBtnFinalizarVenta = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        jBtnOpciones = new javax.swing.JButton();
         jBtnCerrar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jTxtCantidadProducto = new javax.swing.JTextField();
@@ -71,11 +72,10 @@ public class frmPuntoVenta extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jBtnAgregar = new javax.swing.JButton();
         jBtnBuscarArticulo = new javax.swing.JButton();
-        jBtnAgregar2 = new javax.swing.JButton();
+        jBtnNuevoArticulo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTblProductos = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Punto de venta");
 
         jPanelVenta.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))), "Id Venta:     Usuario:      Caja:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
@@ -87,10 +87,9 @@ public class frmPuntoVenta extends javax.swing.JInternalFrame {
             .addGroup(jPanelVentaLayout.createSequentialGroup()
                 .addComponent(jTxtIdVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTxtCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jTxtCaja))
         );
         jPanelVentaLayout.setVerticalGroup(
             jPanelVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,7 +135,7 @@ public class frmPuntoVenta extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTxtTotalSoles, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                    .addComponent(jTxtTotalSoles)
                     .addComponent(jTxtTotalDolares)
                     .addComponent(jTxtTotalDolares1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -151,7 +150,7 @@ public class frmPuntoVenta extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTxtTotalSoles, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTxtTotalDolares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -164,25 +163,45 @@ public class frmPuntoVenta extends javax.swing.JInternalFrame {
 
         jPanelAcciones.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Otras acciones :", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
+        jBtnBorrarLista.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jBtnBorrarLista.setText("<html> <p>Borrar lista</p> <p>( F11 )</p> </html>");
+        jBtnBorrarLista.setMargin(new java.awt.Insets(2, 5, 2, 5));
         jBtnBorrarLista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnBorrarListaActionPerformed(evt);
             }
         });
 
+        jBtnResumen.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jBtnResumen.setText("<html>\n<p>Resumen</p>\n<p>( F9 )</p>\n</html>");
+        jBtnResumen.setPreferredSize(new java.awt.Dimension(97, 43));
 
-        jButton3.setText("<html> <p>Ingresos</p> <p>( F7 )</p> </html>");
+        jBtnIngresos.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jBtnIngresos.setText("<html> <p>Ingresos</p> <p>( F7 )</p> </html>");
+        jBtnIngresos.setPreferredSize(new java.awt.Dimension(97, 43));
 
-        jButton4.setText("<html> <p>Egresos</p> <p>( F8 )</p> </html>");
+        jBtnEgresos.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jBtnEgresos.setText("<html> <p>Egresos</p> <p>( F8 )</p> </html>");
+        jBtnEgresos.setPreferredSize(new java.awt.Dimension(97, 43));
 
+        jBtnArqueo.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jBtnArqueo.setText("<html> <p>Arqueo</p> <p>( F1 )</p> </html>");
+        jBtnArqueo.setPreferredSize(new java.awt.Dimension(97, 43));
+        jBtnArqueo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnArqueoActionPerformed(evt);
+            }
+        });
 
+        jBtnDevolver.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jBtnDevolver.setText("<html> <p>Devolver</p> <p>( F3 )</p> </html>");
+        jBtnDevolver.setPreferredSize(new java.awt.Dimension(97, 43));
 
-        jButton7.setText("<html> <p>Buscar</p> <p>venta</p> </html>");
+        jBtnBuscarVenta.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jBtnBuscarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/buscar_venta_32.png"))); // NOI18N
+        jBtnBuscarVenta.setText("<html> <p>Buscar</p> <p>venta</p> </html>");
 
+        jBtnFinalizarVenta.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jBtnFinalizarVenta.setText("<html> <p>Finalizar venta ( F4 )</p> </html>");
         jBtnFinalizarVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,9 +209,13 @@ public class frmPuntoVenta extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton9.setText("<html> <p>Opciones</p> <p>( F10 )</p> </html>");
+        jBtnOpciones.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jBtnOpciones.setText("<html> <p>Opciones</p> <p>( F10 )</p> </html>");
+        jBtnOpciones.setPreferredSize(new java.awt.Dimension(97, 43));
 
+        jBtnCerrar.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jBtnCerrar.setText("<html> <p>Cerrar</p> <p>( F12 )</p> </html>");
+        jBtnCerrar.setPreferredSize(new java.awt.Dimension(97, 43));
         jBtnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnCerrarActionPerformed(evt);
@@ -204,55 +227,60 @@ public class frmPuntoVenta extends javax.swing.JInternalFrame {
         jPanelAccionesLayout.setHorizontalGroup(
             jPanelAccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelAccionesLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBtnOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jBtnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jBtnBuscarVenta, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jBtnFinalizarVenta, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanelAccionesLayout.createSequentialGroup()
+                .addGroup(jPanelAccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jBtnResumen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBtnIngresos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBtnBorrarLista, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanelAccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAccionesLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jBtnArqueo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanelAccionesLayout.createSequentialGroup()
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelAccionesLayout.createSequentialGroup()
-                        .addComponent(jBtnResumen, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBtnArqueo, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelAccionesLayout.createSequentialGroup()
-                        .addComponent(jBtnBorrarLista, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBtnDevolver, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jBtnFinalizarVenta)
-                    .addGroup(jPanelAccionesLayout.createSequentialGroup()
-                        .addComponent(jButton9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBtnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addGroup(jPanelAccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBtnDevolver, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                            .addComponent(jBtnEgresos, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
+
+        jPanelAccionesLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBtnArqueo, jBtnBorrarLista, jBtnCerrar, jBtnDevolver, jBtnEgresos, jBtnIngresos, jBtnOpciones, jBtnResumen});
+
         jPanelAccionesLayout.setVerticalGroup(
             jPanelAccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelAccionesLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(8, 8, 8)
                 .addGroup(jPanelAccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBtnDevolver, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnBorrarLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                    .addComponent(jBtnBorrarLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnDevolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
                 .addGroup(jPanelAccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnResumen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBtnArqueo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addGroup(jPanelAccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(jBtnFinalizarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGap(13, 13, 13)
                 .addGroup(jPanelAccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBtnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                    .addComponent(jBtnIngresos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnEgresos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addComponent(jBtnBuscarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBtnFinalizarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addGroup(jPanelAccionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBtnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0))
         );
 
-        jPanelAccionesLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBtnArqueo, jBtnBorrarLista, jBtnCerrar, jBtnDevolver, jBtnFinalizarVenta, jBtnResumen, jButton3, jButton4, jButton7, jButton9});
+        jPanelAccionesLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBtnArqueo, jBtnBorrarLista, jBtnBuscarVenta, jBtnCerrar, jBtnDevolver, jBtnEgresos, jBtnFinalizarVenta, jBtnIngresos, jBtnOpciones, jBtnResumen});
+
+        jBtnBorrarLista.getAccessibleContext().setAccessibleName("<html> Borrar lista <p>( F11 )</p> </html>");
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
@@ -271,13 +299,15 @@ public class frmPuntoVenta extends javax.swing.JInternalFrame {
         });
 
         jBtnBuscarArticulo.setText("<html><p>Buscar artículo</p><p>( F5 )</p></html>");
+        jBtnBuscarArticulo.setPreferredSize(new java.awt.Dimension(120, 45));
         jBtnBuscarArticulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnBuscarArticuloActionPerformed(evt);
             }
         });
 
-        jBtnAgregar2.setText("<html>\n<p>Nuevo artículo</p>\n<p>( F6 )</p>\n</html>");
+        jBtnNuevoArticulo.setText("<html>\n<p>Nuevo artículo</p>\n<p>( F6 )</p>\n</html>");
+        jBtnNuevoArticulo.setPreferredSize(new java.awt.Dimension(125, 45));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -286,59 +316,51 @@ public class frmPuntoVenta extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTxtCodigoProducto)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(52, 52, 52)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                    .addComponent(jTxtCodigoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTxtNombreProducto)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(79, 79, 79)))
-                .addGap(18, 18, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTxtCantidadProducto)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(42, 42, 42)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(jBtnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBtnBuscarArticulo, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBtnAgregar2, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTxtCantidadProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addComponent(jBtnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBtnBuscarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBtnNuevoArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBtnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel4))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTxtCodigoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTxtCantidadProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTxtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(5, 5, 5))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jBtnBuscarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBtnAgregar2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTxtCantidadProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTxtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTxtCodigoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jBtnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBtnBuscarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBtnNuevoArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(5, 5, 5))
         );
+
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBtnAgregar, jBtnBuscarArticulo, jBtnNuevoArticulo});
 
         jTblProductos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTblProductos.setFont(new java.awt.Font("Calibri", 0, 21)); // NOI18N
@@ -378,14 +400,14 @@ public class frmPuntoVenta extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanelVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelAcciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addGap(18, 18, 18))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 855, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -393,14 +415,14 @@ public class frmPuntoVenta extends javax.swing.JInternalFrame {
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanelVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanelAcciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -431,21 +453,25 @@ public class frmPuntoVenta extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jBtnBuscarArticuloActionPerformed
 
+    private void jBtnArqueoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnArqueoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnArqueoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnAgregar;
-    private javax.swing.JButton jBtnAgregar2;
     private javax.swing.JButton jBtnArqueo;
     private javax.swing.JButton jBtnBorrarLista;
     private javax.swing.JButton jBtnBuscarArticulo;
+    private javax.swing.JButton jBtnBuscarVenta;
     private javax.swing.JButton jBtnCerrar;
     private javax.swing.JButton jBtnDevolver;
+    private javax.swing.JButton jBtnEgresos;
     private javax.swing.JButton jBtnFinalizarVenta;
+    private javax.swing.JButton jBtnIngresos;
+    private javax.swing.JButton jBtnNuevoArticulo;
+    private javax.swing.JButton jBtnOpciones;
     private javax.swing.JButton jBtnResumen;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -469,41 +495,133 @@ public class frmPuntoVenta extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void bindKeys() {
-
-        Action actionF2 = new AbstractAction("<html><p>Agregar</p><p>( F2 )</p></html>") {
+        Action actionF1 = new AbstractAction(
+                "<html><p>Arqueo</p><p>( F1 )</p></html>",
+                new ImageIcon(getClass().getResource("/resources/caja-fuerte_32.png"))
+        ) {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+            }
+        };
+
+        Action actionF2 = new AbstractAction(
+                "<html><p>Agregar</p><p>( F2 )</p></html>",
+                new ImageIcon(getClass().getResource("/resources/mas_32.png"))
+        ) {
+            @Override
+            public void actionPerformed(ActionEvent e
+            ) {
                 agregarProducto();
             }
         };
-        Action actionF4 = new AbstractAction("<html> <p>Finalizar venta ( F4 )</p> </html>") {
+        Action actionF3 = new AbstractAction(
+                "<html> <p>Devolver</p> <p>( F3 )</p> </html>",
+                new ImageIcon(getClass().getResource("/resources/devolucion_32.png"))
+        ) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        };
+        Action actionF4 = new AbstractAction(
+                "<html> <p>Finalizar venta ( F4 )</p> </html>",
+                new ImageIcon(getClass().getResource("/resources/venta-cruzada_32.png"))
+        ) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 finalizarVenta();
             }
         };
-        Action actionF5 = new AbstractAction("<html><p>Buscar artículo</p><p>( F5 )</p></html>") {
+        Action actionF5 = new AbstractAction(
+                "<html><p>Buscar artículo</p><p>( F5 )</p></html>",
+                new ImageIcon(getClass().getResource("/resources/etiqueta_32.png"))
+        ) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 buscarArticulo();
             }
         };
-        Action actionF11 = new AbstractAction("<html> <p>Borrar lista</p> <p>( F11 )</p> </html>") {
+
+        Action actionF6 = new AbstractAction(
+                "<html><p>Nuevo artículo</p><p>( F6 )</p></html>",
+                new ImageIcon(getClass().getResource("/resources/nuevo-producto_32.png"))
+        ) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        };
+
+        Action actionF7 = new AbstractAction(
+                "<html><p>Ingresos</p><p>( F7 )</p></html>",
+                new ImageIcon(getClass().getResource("/resources/dinero_32.png"))
+        ) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        };
+
+        Action actionF8 = new AbstractAction(
+                "<html><p>Egresos</p><p>( F8 )</p></html>",
+                new ImageIcon(getClass().getResource("/resources/deuda_32.png"))
+        ) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        };
+
+        Action actionF9 = new AbstractAction(
+                "<html><p>Resumen</p><p>( F9 )</p></html>",
+                new ImageIcon(getClass().getResource("/resources/resumen_32.png"))
+        ) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        };
+
+        Action actionF10 = new AbstractAction(
+                "<html><p>Opciones</p><p>( F10 )</p></html>",
+                new ImageIcon(getClass().getResource("/resources/configuraciones_32.png"))
+        ) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        };
+
+        Action actionF11 = new AbstractAction(
+                "<html> <p>Borrar lista</p> <p>( F11 )</p> </html>",
+                new ImageIcon(getClass().getResource("/resources/basura_32.png"))
+        ) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 borrarLista();
             }
         };
-        Action actionF12 = new AbstractAction("<html> <p>Cerrar</p> <p>( F12 )</p> </html>") {
+        Action actionF12 = new AbstractAction(
+                "<html> <p>Cerrar</p> <p>( F12 )</p> </html>",
+                new ImageIcon(getClass().getResource("/resources/cerrar_32.png"))
+        ) {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cerrar();
             }
         };
 
+        UIHelper.bindKeyToButton(jBtnArqueo, actionF1, "F1");
         UIHelper.bindKeyToButton(jBtnAgregar, actionF2, "F2");
+        UIHelper.bindKeyToButton(jBtnDevolver, actionF3, "F3");
         UIHelper.bindKeyToButton(jBtnFinalizarVenta, actionF4, "F4");
         UIHelper.bindKeyToButton(jBtnBuscarArticulo, actionF5, "F5");
+        UIHelper.bindKeyToButton(jBtnNuevoArticulo, actionF6, "F6");
+        UIHelper.bindKeyToButton(jBtnIngresos, actionF7, "F7");
+        UIHelper.bindKeyToButton(jBtnEgresos, actionF8, "F8");
+        UIHelper.bindKeyToButton(jBtnResumen, actionF9, "F9");
+        UIHelper.bindKeyToButton(jBtnOpciones, actionF10, "F10");
         UIHelper.bindKeyToButton(jBtnBorrarLista, actionF11, "F11");
         UIHelper.bindKeyToButton(jBtnCerrar, actionF12, "F12");
     }

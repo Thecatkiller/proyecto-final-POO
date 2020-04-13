@@ -5,6 +5,7 @@
  */
 package views;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -13,7 +14,6 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
-import javafx.scene.paint.Color;
 import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -30,7 +30,7 @@ import util.UIHelper;
  */
 public class frmPrincipal extends javax.swing.JFrame {
 
-    private static final java.awt.Color COLOR_BTN_ACTIVO = java.awt.Color.GREEN;
+    private static final java.awt.Color COLOR_BTN_ACTIVO = Color.getHSBColor(128, 255, 128);
 
     private enum Formularios {
         PUNTO_VENTA,
