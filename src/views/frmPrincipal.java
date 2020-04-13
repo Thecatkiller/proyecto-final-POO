@@ -5,7 +5,6 @@
  */
 package views;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -14,6 +13,7 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import javafx.scene.paint.Color;
 import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -29,6 +29,8 @@ import util.UIHelper;
  * @author Diego Sebastian
  */
 public class frmPrincipal extends javax.swing.JFrame {
+
+    private static final java.awt.Color COLOR_BTN_ACTIVO = java.awt.Color.GREEN;
 
     private enum Formularios {
         PUNTO_VENTA,
@@ -250,26 +252,36 @@ public class frmPrincipal extends javax.swing.JFrame {
     private void registroTrabajadores() {
         setFullSizeJInternalFrame(Formularios.TRABAJADORES);
         jInternalFramePrincipal.setTitle("Trabajadores");
+        setGreyButtons();
+        jbtnRegistroTrabajadores.setBackground(COLOR_BTN_ACTIVO);
     }
 
     private void registroProductos() {
         setFullSizeJInternalFrame(Formularios.PRODUCTOS);
         jInternalFramePrincipal.setTitle("Productos");
+        setGreyButtons();
+        jbtnRegistroProductos.setBackground(COLOR_BTN_ACTIVO);
     }
 
     private void ingresoStock() {
         setFullSizeJInternalFrame(Formularios.STOCK);
         jInternalFramePrincipal.setTitle("Stock productos");
+        setGreyButtons();
+        jbtnIngresoStock.setBackground(COLOR_BTN_ACTIVO);
     }
 
     private void puntoVenta() {
         setFullSizeJInternalFrame(Formularios.PUNTO_VENTA);
         jInternalFramePrincipal.setTitle("Punto de venta");
+        setGreyButtons();
+        jbtnPuntoVenta.setBackground(COLOR_BTN_ACTIVO);
     }
 
     private void registroProveedor() {
         setFullSizeJInternalFrame(Formularios.PROVEEDORES);
         jInternalFramePrincipal.setTitle("Proveedores");
+        setGreyButtons();
+        jbtnRegistroProveedores.setBackground(COLOR_BTN_ACTIVO);
     }
 
     private void setFullSizeJInternalFrame(Formularios formulario) {
@@ -283,7 +295,17 @@ public class frmPrincipal extends javax.swing.JFrame {
         mapFormularios.get(formulario).setSize(d.width, d.height);
     }
 
+    private void setGreyButtons() {
+        final java.awt.Color color = java.awt.Color.gray;
+        jbtnRegistroTrabajadores.setBackground(color);
+        jbtnRegistroProductos.setBackground(color);
+        jbtnIngresoStock.setBackground(color);
+        jbtnRegistroProveedores.setBackground(color);
+        jbtnPuntoVenta.setBackground(color);
+    }
+
     private void inicializar() {
+        setGreyButtons();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         jInternalFramePrincipal.putClientProperty("JInternalFrame.isPalette", Boolean.TRUE);
         jInternalFramePrincipal.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
