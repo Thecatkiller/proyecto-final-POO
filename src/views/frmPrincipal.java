@@ -5,6 +5,7 @@
  */
 package views;
 
+import components.JInternalFrameCustom;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -22,6 +23,9 @@ import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JRootPane;
 import javax.swing.KeyStroke;
+import javax.swing.border.LineBorder;
+import javax.swing.plaf.InternalFrameUI;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 import util.UIHelper;
 
 /**
@@ -61,13 +65,14 @@ public class frmPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jbtnRegistroTrabajadores = new javax.swing.JButton();
-        jbtnRegistroProductos = new javax.swing.JButton();
-        jbtnIngresoStock = new javax.swing.JButton();
-        jbtnPuntoVenta = new javax.swing.JButton();
-        jbtnRegistroProveedores = new javax.swing.JButton();
+        jbtnRegistroTrabajadores = new components.SquareButton();
+        jbtnRegistroProductos = new components.SquareButton();
+        jbtnIngresoStock = new components.SquareButton();
+        jbtnPuntoVenta = new components.SquareButton();
+        jbtnRegistroProveedores = new components.SquareButton();
         jDesktopPanePrincipal = new javax.swing.JDesktopPane();
-        jInternalFramePrincipal = new javax.swing.JInternalFrame();
+        jInternalFramePrincipal = new JInternalFrameCustom(){
+        };
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestión de relación con clientes (CRM)");
@@ -99,6 +104,9 @@ public class frmPrincipal extends javax.swing.JFrame {
         jbtnPuntoVenta.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jbtnPuntoVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/venta_32.png"))); // NOI18N
         jbtnPuntoVenta.setText("<html><p><u style=\"font-weight:bold\">V</u>entas</p><p style=\"text-align: center;\"></html>");
+        jbtnPuntoVenta.setBorder(new components.SolidBorder());
+        jbtnPuntoVenta.setIconTextGap(5);
+        jbtnPuntoVenta.setInheritsPopupMenu(true);
         jbtnPuntoVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnPuntoVentaActionPerformed(evt);
@@ -117,7 +125,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         jDesktopPanePrincipal.setLayout(jDesktopPanePrincipalLayout);
         jDesktopPanePrincipalLayout.setHorizontalGroup(
             jDesktopPanePrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 3, Short.MAX_VALUE)
         );
         jDesktopPanePrincipalLayout.setVerticalGroup(
             jDesktopPanePrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,7 +144,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         );
         jInternalFramePrincipalLayout.setVerticalGroup(
             jInternalFramePrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 442, Short.MAX_VALUE)
+            .addGap(0, 457, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -144,40 +152,42 @@ public class frmPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbtnRegistroProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnIngresoStock, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnRegistroProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnRegistroTrabajadores, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnPuntoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jbtnRegistroProveedores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbtnIngresoStock, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbtnRegistroProductos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbtnPuntoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbtnRegistroTrabajadores, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1025, 1025, 1025)
                         .addComponent(jDesktopPanePrincipal))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jInternalFramePrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE)
-                        .addGap(20, 20, 20))))
+                        .addComponent(jInternalFramePrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 1010, Short.MAX_VALUE)
+                        .addGap(12, 12, 12))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jDesktopPanePrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
+                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jbtnPuntoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbtnRegistroTrabajadores, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbtnRegistroProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbtnIngresoStock, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbtnRegistroProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jInternalFramePrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jbtnRegistroProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jInternalFramePrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
 
@@ -260,6 +270,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         setFullSizeJInternalFrame(Formularios.PRODUCTOS);
         jInternalFramePrincipal.setTitle("Productos");
         setGreyButtons();
+        ((frmProductos) mapFormularios.get(Formularios.PRODUCTOS)).irAProductos();
         jbtnRegistroProductos.setBackground(COLOR_BTN_ACTIVO);
     }
 
@@ -306,6 +317,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     private void inicializar() {
         setGreyButtons();
+
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         jInternalFramePrincipal.putClientProperty("JInternalFrame.isPalette", Boolean.TRUE);
         jInternalFramePrincipal.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
@@ -315,28 +327,24 @@ public class frmPrincipal extends javax.swing.JFrame {
         mapFormularios = new HashMap<>();
 
         frmPuntoVenta frmPuntoVenta = new frmPuntoVenta();
-        frmPuntoVenta.setLocation(-1, -24);
+        //frmPuntoVenta.setLocation(-1, -1);
         jInternalFramePrincipal.add(frmPuntoVenta);
 
         frmRegistroTrabajadores frmRegistroTrabajadores = new frmRegistroTrabajadores();
-        frmRegistroTrabajadores.setLocation(-1, -24);
         jInternalFramePrincipal.add(frmRegistroTrabajadores);
 
-        frmRegistroProductos frmRegistroProductos = new frmRegistroProductos();
-        frmRegistroProductos.setLocation(-1, -24);
-        jInternalFramePrincipal.add(frmRegistroProductos);
+        frmProductos frmProductos = new frmProductos();
+        jInternalFramePrincipal.add(frmProductos);
 
         frmIngresoStock frmIngresoStock = new frmIngresoStock();
-        frmIngresoStock.setLocation(-1, -24);
         jInternalFramePrincipal.add(frmIngresoStock);
 
         frmRegistroProveedor frmRegistroProveedor = new frmRegistroProveedor();
-        frmRegistroProveedor.setLocation(-1, -24);
         jInternalFramePrincipal.add(frmRegistroProveedor);
 
         mapFormularios.put(Formularios.PUNTO_VENTA, frmPuntoVenta);
         mapFormularios.put(Formularios.TRABAJADORES, frmRegistroTrabajadores);
-        mapFormularios.put(Formularios.PRODUCTOS, frmRegistroProductos);
+        mapFormularios.put(Formularios.PRODUCTOS, frmProductos);
         mapFormularios.put(Formularios.STOCK, frmIngresoStock);
         mapFormularios.put(Formularios.PROVEEDORES, frmRegistroProveedor);
     }

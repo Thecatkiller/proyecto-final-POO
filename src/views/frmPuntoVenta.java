@@ -5,6 +5,7 @@
  */
 package views;
 
+import components.JInternalFrameCustom;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -18,7 +19,7 @@ import javax.swing.JOptionPane;
  *
  * @author Diego Sebastian
  */
-public class frmPuntoVenta extends javax.swing.JInternalFrame {
+public class frmPuntoVenta extends JInternalFrameCustom {
 
     /**
      * Creates new form frmPuntoVenta
