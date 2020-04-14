@@ -9,5 +9,4 @@ Funcionalidades:
 ## 1. Login
 ## 2. Productos
 ![Imagen productos](/images/productos.png)
-Format: ![Alt Text](url)
 
