@@ -3,7 +3,11 @@
 
 Funcionalidades:
 1. Login
-2. Registro de empleados
-3. Registro de productos
-4. Punto de venta
+2. Productos
+3. Punto de venta
+
+## 1. Login
+## 2. Productos
+![Imagen productos](/images/productos.png)
+Format: ![Alt Text](url)
 
