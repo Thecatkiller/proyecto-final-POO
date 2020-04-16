@@ -8,11 +8,19 @@ package views;
 import business.ColaboradorController;
 import business.SecurityController;
 import complements.TextPlaceholder;
+import java.awt.event.ActionEvent;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.ImageIcon;
 import static javax.swing.JOptionPane.showMessageDialog;
+import javax.swing.KeyStroke;
 import model.Colaborador;
 import model.Persona;
 import model.User;
 import util.GlobalVariables;
+import util.UIHelper;
 
 /**
  *
@@ -31,9 +39,20 @@ public class frmLogin extends javax.swing.JFrame {
         txtUsuario.requestFocus();
         new TextPlaceholder(" usuario ", txtUsuario);
         new TextPlaceholder(" clave ", txtPasword);
-        
-        new ColaboradorController().getColaboradores();
-        
+        Action actionEnter = new AbstractAction("",
+                new ImageIcon(getClass().getResource("/resources/enter_ON.png"))
+        ) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                login();
+            }
+        };
+
+        UIHelper.bindKeyToButton(
+                btnIngresar,
+                actionEnter,
+                KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0)
+        );
     }
 
     /**
@@ -56,8 +75,10 @@ public class frmLogin extends javax.swing.JFrame {
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(255, 255, 255));
 
+        txtUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtUsuario.setToolTipText("Ingrese su nombre de usuario");
         txtUsuario.setBorder(null);
+        txtUsuario.setMargin(new java.awt.Insets(2, 50, 2, 2));
         txtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsuarioActionPerformed(evt);
@@ -68,8 +89,10 @@ public class frmLogin extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/key-image.png"))); // NOI18N
 
+        txtPasword.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtPasword.setToolTipText("Ingrese su contraseña");
         txtPasword.setBorder(null);
+        txtPasword.setMargin(new java.awt.Insets(2, 10, 2, 2));
 
         btnIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Enter_ON.png"))); // NOI18N
         btnIngresar.setToolTipText("");
@@ -87,10 +110,6 @@ public class frmLogin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(107, Short.MAX_VALUE)
-                .addComponent(btnIngresar)
-                .addGap(115, 115, 115))
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -100,7 +119,11 @@ public class frmLogin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
                     .addComponent(txtPasword))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnIngresar)
+                .addGap(107, 107, 107))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,7 +149,7 @@ public class frmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        login();
+        //login();
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**

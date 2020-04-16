@@ -21,11 +21,11 @@ public class frmProductosDetalle extends JInternalFrameCustom {
      */
     public frmProductosDetalle() {
         initComponents();
-
+        
         new TextPlaceholder(" Encontrar producto por código o descripción ", jTxtBusquedaProducto);
-
+        
         setContentAreaFilledToButtons();
-
+        
         jChoiceTipoBusqueda.add("Mostrar: Todos los productos");
         jChoiceTipoBusqueda.add("Mostrar: Productos con poco stock");
         jChoiceTipoBusqueda.add("Mostrar: Solo productos ya vendidos");
@@ -66,6 +66,11 @@ public class frmProductosDetalle extends JInternalFrameCustom {
 
         jBtnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/mas_32.png"))); // NOI18N
         jBtnAgregar.setPreferredSize(new java.awt.Dimension(65, 65));
+        jBtnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnAgregarActionPerformed(evt);
+            }
+        });
 
         jBtnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/resumen_32.png"))); // NOI18N
 
@@ -189,6 +194,10 @@ public class frmProductosDetalle extends JInternalFrameCustom {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jBtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAgregarActionPerformed
+        agregarNuevoProducto();
+    }//GEN-LAST:event_jBtnAgregarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnAgregar;
@@ -214,5 +223,10 @@ public class frmProductosDetalle extends JInternalFrameCustom {
         jBtnEliminar.setContentAreaFilled(false);
         jBtnEtiqueta.setContentAreaFilled(false);
         jBtnImprimir.setContentAreaFilled(false);
+    }
+    
+    private void agregarNuevoProducto() {
+        frmRegistroProductos frmRegistroProductos = new frmRegistroProductos();
+        frmRegistroProductos.setVisible(true);
     }
 }

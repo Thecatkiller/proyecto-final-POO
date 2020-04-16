@@ -6,6 +6,7 @@
 package views;
 
 import components.JInternalFrameCustom;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.util.HashMap;
 import javax.swing.JInternalFrame;
@@ -16,8 +17,13 @@ import javax.swing.JInternalFrame;
  */
 public class frmProductos extends JInternalFrameCustom {
 
+    private static final java.awt.Color COLOR_BTN_ACTIVO = Color.getHSBColor(128, 255, 128);
+
     private enum Formularios {
-        PRODUCTOS
+        PRODUCTOS,
+        STOCK,
+        INVENTARIO,
+        PROVEEDORES;
     }
 
     private static HashMap<Formularios, JInternalFrame> mapFormularios = new HashMap<>();
@@ -28,7 +34,7 @@ public class frmProductos extends JInternalFrameCustom {
     public frmProductos() {
         initComponents();
         inicializar();
-        irAProductos();
+        this.irAProductos();
     }
 
     /**
@@ -41,9 +47,9 @@ public class frmProductos extends JInternalFrameCustom {
     private void initComponents() {
 
         jBtnProductos = new components.SquareButton();
-        jButton2 = new components.SquareButton();
-        jButton3 = new components.SquareButton();
-        jButton4 = new components.SquareButton();
+        jBtnStock = new components.SquareButton();
+        jBtnProveedores = new components.SquareButton();
+        jBtnInventario = new components.SquareButton();
         jInternalFramePrincipal = new JInternalFrameCustom();
 
         jBtnProductos.setText("Productos");
@@ -56,20 +62,35 @@ public class frmProductos extends JInternalFrameCustom {
             }
         });
 
-        jButton2.setText("Operaciones de Stock");
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnStock.setText("Operaciones de Stock");
+        jBtnStock.setFocusable(false);
+        jBtnStock.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBtnStock.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnStock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnStockActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Proveedores");
-        jButton3.setFocusable(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnProveedores.setText("Proveedores");
+        jBtnProveedores.setFocusable(false);
+        jBtnProveedores.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBtnProveedores.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnProveedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnProveedoresActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Inventario");
-        jButton4.setFocusable(false);
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnInventario.setText("Inventario");
+        jBtnInventario.setFocusable(false);
+        jBtnInventario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBtnInventario.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnInventarioActionPerformed(evt);
+            }
+        });
 
         jInternalFramePrincipal.setVisible(true);
 
@@ -95,11 +116,11 @@ public class frmProductos extends JInternalFrameCustom {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBtnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBtnStock, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBtnProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBtnInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 475, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -108,16 +129,16 @@ public class frmProductos extends JInternalFrameCustom {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2)
+                    .addComponent(jBtnProveedores, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jBtnInventario, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jBtnStock)
                     .addComponent(jBtnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jInternalFramePrincipal)
                 .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBtnProductos, jButton2, jButton3, jButton4});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBtnInventario, jBtnProductos, jBtnProveedores, jBtnStock});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -126,25 +147,69 @@ public class frmProductos extends JInternalFrameCustom {
         irAProductos();
     }//GEN-LAST:event_jBtnProductosActionPerformed
 
+    private void jBtnStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnStockActionPerformed
+        irAStock();
+    }//GEN-LAST:event_jBtnStockActionPerformed
+
+    private void jBtnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnProveedoresActionPerformed
+        irAProveedores();
+    }//GEN-LAST:event_jBtnProveedoresActionPerformed
+
+    private void jBtnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnInventarioActionPerformed
+        irAInventario();
+    }//GEN-LAST:event_jBtnInventarioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtnInventario;
     private javax.swing.JButton jBtnProductos;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jBtnProveedores;
+    private javax.swing.JButton jBtnStock;
     private javax.swing.JInternalFrame jInternalFramePrincipal;
     // End of variables declaration//GEN-END:variables
 
     public void irAProductos() {
+        setGreyButtons();
+        jBtnProductos.setBackground(COLOR_BTN_ACTIVO);
         setFullSizeJInternalFrame(Formularios.PRODUCTOS);
     }
 
-    private void inicializar() {
-        frmProductosDetalle frmProductosDetalle = new frmProductosDetalle();
-        //frmProductosDetalle.setLocation(-1, -24);
-        jInternalFramePrincipal.add(frmProductosDetalle);
+    private void irAInventario() {
+        setGreyButtons();
+        jBtnInventario.setBackground(COLOR_BTN_ACTIVO);
+        setFullSizeJInternalFrame(Formularios.INVENTARIO);
+    }
 
+    private void irAProveedores() {
+        setGreyButtons();
+        jBtnProveedores.setBackground(COLOR_BTN_ACTIVO);
+        setFullSizeJInternalFrame(Formularios.PROVEEDORES);
+    }
+
+    private void irAStock() {
+        setGreyButtons();
+        jBtnStock.setBackground(COLOR_BTN_ACTIVO);
+        setFullSizeJInternalFrame(Formularios.STOCK);
+    }
+
+    private void inicializar() {
+        setGreyButtons();
+        frmProductosDetalle frmProductosDetalle = new frmProductosDetalle();
+        jInternalFramePrincipal.add(frmProductosDetalle);
         mapFormularios.put(Formularios.PRODUCTOS, frmProductosDetalle);
+        mapFormularios.put(Formularios.INVENTARIO, frmProductosDetalle);
+        mapFormularios.put(Formularios.PROVEEDORES, frmProductosDetalle);
+        mapFormularios.put(Formularios.STOCK, frmProductosDetalle);
+
+    }
+
+    private void setGreyButtons() {
+        final java.awt.Color color = java.awt.Color.gray;
+        jBtnInventario.setBackground(color);
+        jBtnProductos.setBackground(color);
+        jBtnStock.setBackground(color);
+        jBtnProveedores.setBackground(color);
+
     }
 
     private void setFullSizeJInternalFrame(Formularios formulario) {
