@@ -4,10 +4,16 @@ import static business.LectorDatos.NOMBRE_METODO_LEER;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.nio.channels.FileChannel;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -109,6 +115,40 @@ public final class DataReader {
         } catch (Exception ex) {
 
         }
+    }
+
+    public static String getUsersProjectRootDirectory() {
+        String envRootDir = System.getProperty("user.dir");
+        Path rootDir = Paths.get(".").normalize().toAbsolutePath();
+        if (rootDir.startsWith(envRootDir)) {
+            return rootDir.toString();
+        } else {
+            throw new RuntimeException("Root dir not found in user directory.");
+        }
+    }
+
+    public static void copyFile(File sourceFile, File destFile)
+            throws IOException {
+        if (!sourceFile.exists()) {
+            return;
+        }
+        if (!destFile.exists()) {
+            destFile.createNewFile();
+        }
+        FileChannel source = null;
+        FileChannel destination = null;
+        source = new FileInputStream(sourceFile).getChannel();
+        destination = new FileOutputStream(destFile).getChannel();
+        if (destination != null && source != null) {
+            destination.transferFrom(source, 0, source.size());
+        }
+        if (source != null) {
+            source.close();
+        }
+        if (destination != null) {
+            destination.close();
+        }
+
     }
 
 }
