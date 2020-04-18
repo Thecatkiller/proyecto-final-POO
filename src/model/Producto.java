@@ -13,10 +13,13 @@ public class Producto implements LectorDatos {
 
     private String codigo;
     private String nombre;
-    private double precio;
+    private double precioVenta;
+    private double precioCosto;
     private String imagen;
     private String codigoBarras;
     private CategoriaProducto categoriaProducto;
+    private Marca marcaProducto;
+    private boolean cambiarPrecio;
 
     public Producto() {
     }
@@ -24,14 +27,22 @@ public class Producto implements LectorDatos {
     public Producto(
             String codigo,
             String nombre,
-            double precio,
+            double precioVenta,
+            double precioCosto,
+            boolean cambiarPrecio,
             CategoriaProducto categoriaProducto,
             String imagen,
-            String codigoBarras) {
+            String codigoBarras,
+            Marca marcaProducto) {
         this.codigo = codigo;
         this.nombre = nombre;
-        this.precio = precio;
+        this.precioVenta = precioVenta;
+        this.precioCosto = precioCosto;
+        this.cambiarPrecio = cambiarPrecio;
         this.categoriaProducto = categoriaProducto;
+        this.imagen = imagen;
+        this.codigoBarras = codigoBarras;
+        this.marcaProducto = marcaProducto;
     }
 
     public String getCodigo() {
@@ -40,10 +51,6 @@ public class Producto implements LectorDatos {
 
     public String getNombre() {
         return nombre;
-    }
-
-    public double getPrecio() {
-        return precio;
     }
 
     public CategoriaProducto getCategoriaProducto() {
@@ -58,14 +65,33 @@ public class Producto implements LectorDatos {
         return codigoBarras;
     }
 
+    public Marca getMarcaProducto() {
+        return marcaProducto;
+    }
+
+    public double getPrecioVenta() {
+        return precioVenta;
+    }
+
+    public double getPrecioCosto() {
+        return precioCosto;
+    }
+
+    public boolean isCambiarPrecio() {
+        return cambiarPrecio;
+    }
+
     @Override
     public String toString() {
         return this.codigo + SEPARADOR_ARCHIVO_INTERNO
                 + this.categoriaProducto.getCodigo() + SEPARADOR_ARCHIVO_INTERNO
                 + this.nombre + SEPARADOR_ARCHIVO_INTERNO
-                + this.precio + SEPARADOR_ARCHIVO_INTERNO
+                + this.precioVenta + SEPARADOR_ARCHIVO_INTERNO
+                + this.precioCosto + SEPARADOR_ARCHIVO_INTERNO
+                + this.cambiarPrecio + SEPARADOR_ARCHIVO_INTERNO
                 + this.imagen + SEPARADOR_ARCHIVO_INTERNO
-                + this.codigoBarras;
+                + this.codigoBarras + SEPARADOR_ARCHIVO_INTERNO
+                + this.getMarcaProducto().getCodigo();
     }
 
     @Override
@@ -75,10 +101,12 @@ public class Producto implements LectorDatos {
         this.codigo = datos[0];
         this.categoriaProducto = pController.getCategoriaProductoById(Integer.parseInt(datos[1]));
         this.nombre = datos[2];
-        this.precio = Double.parseDouble(datos[3]);
-        this.imagen = datos[4];
-        this.codigoBarras = datos[5];
-
+        this.precioVenta = Double.parseDouble(datos[3]);
+        this.precioCosto = Double.parseDouble(datos[4]);
+        this.cambiarPrecio = Boolean.valueOf(datos[5]);
+        this.imagen = datos[6];
+        this.codigoBarras = datos[7];
+        this.marcaProducto = pController.getMarcaByCodigo(Integer.parseInt(datos[8]));
     }
 
 }

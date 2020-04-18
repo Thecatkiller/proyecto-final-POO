@@ -5,10 +5,13 @@
  */
 package views;
 
+import business.ProductosController;
+import static complements.Constants.DATE_FORMATE_DD_MM_YYYY;
 import complements.TextPlaceholder;
 import components.JIconTextField;
 import components.JInternalFrameCustom;
 import java.awt.Graphics;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,19 +19,22 @@ import java.awt.Graphics;
  */
 public class frmProductosDetalle extends JInternalFrameCustom {
 
+    private static final ProductosController prdController = new ProductosController();
+
     /**
      * Creates new form frmBusquedaProductosStock
      */
     public frmProductosDetalle() {
         initComponents();
-        
+
         new TextPlaceholder(" Encontrar producto por código o descripción ", jTxtBusquedaProducto);
-        
+
         setContentAreaFilledToButtons();
-        
+
         jChoiceTipoBusqueda.add("Mostrar: Todos los productos");
         jChoiceTipoBusqueda.add("Mostrar: Productos con poco stock");
         jChoiceTipoBusqueda.add("Mostrar: Solo productos ya vendidos");
+        mostrarRegistrosTabla();
     }
 
     /**
@@ -147,6 +153,7 @@ public class frmProductosDetalle extends JInternalFrameCustom {
                 .addGap(8, 8, 8))
         );
 
+        jTblProductos.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jTblProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -163,6 +170,7 @@ public class frmProductosDetalle extends JInternalFrameCustom {
                 return canEdit [columnIndex];
             }
         });
+        jTblProductos.setRowHeight(25);
         jScrollPane1.setViewportView(jTblProductos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -224,7 +232,29 @@ public class frmProductosDetalle extends JInternalFrameCustom {
         jBtnEtiqueta.setContentAreaFilled(false);
         jBtnImprimir.setContentAreaFilled(false);
     }
-    
+
+    private void mostrarRegistrosTabla() {
+        DefaultTableModel model = (DefaultTableModel) jTblProductos.getModel();
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        prdController.listarProductos().forEach(x -> {
+            model.addRow(
+                    new Object[]{
+                        x.getNombre(),
+                        x.getCodigo(),
+                        0,
+                        0,
+                        0,
+                        x.getPrecioVenta(),
+                        x.getCategoriaProducto().getNombre(),
+                        0,
+                        "",
+                        "",
+                        x.getMarcaProducto().getNombre()
+                    });
+        });
+    }
+
     private void agregarNuevoProducto() {
         frmRegistroProductos frmRegistroProductos = new frmRegistroProductos();
         frmRegistroProductos.setVisible(true);

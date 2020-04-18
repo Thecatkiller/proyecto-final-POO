@@ -6,6 +6,7 @@
 package views;
 
 import business.ProductosController;
+import static complements.Constants.PATH_RECURSOS;
 import complements.DataReader;
 import complements.OnlyDigitWithDecimalsAdapter;
 import components.FileTypeFilter;
@@ -28,6 +29,8 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import javafx.beans.value.ObservableValue;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -54,7 +57,9 @@ import util.UIHelper;
 public class frmRegistroProductos extends javax.swing.JFrame {
 
     private static final ProductosController productosController = new ProductosController();
-    private File fileToSave;
+    private File fileToSave = null;
+    private HashMap<Integer, String> hashMapCategoria;
+    private HashMap<Integer, String> hashMapMarca;
 
     /**
      * Creates new form frmRegistroProductos
@@ -64,10 +69,6 @@ public class frmRegistroProductos extends javax.swing.JFrame {
 
         super.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-        productosController.listarCategoriasProducto().forEach(x -> {
-            jComboBoxCategoria.addItem(x.getNombre());
-        });
-
         inicializar();
 
 
@@ -75,14 +76,7 @@ public class frmRegistroProductos extends javax.swing.JFrame {
         jTxtNombreProducto.setDocument(new JTextFieldLimit(45));
         jTxtPrecioUnitario.setDocument(new JTextFieldLimit(15));
 
-        jTxtCodigo.setEditable(false);
-
-        productosController.listarCategoriasProducto().forEach(x -> {
-            jCmbCategoriaProducto.addItem(x.getNombre());
-        });
-
-        UIHelper.limpiarControles(jPanelControles);
-        UIHelper.cambiarEstadoControles(jPanelControles, false);*/
+         */
     }
 
     /**
@@ -102,10 +96,10 @@ public class frmRegistroProductos extends javax.swing.JFrame {
         jTxtDescripcion = new JFocusedTextField(java.awt.Color.yellow,java.awt.Color.blue);
         checkCodigo = new java.awt.Checkbox();
         jLabel3 = new javax.swing.JLabel();
-        jComboBoxCategoria = new JComboBoxAddItemsField(new Object[]{"-------"});
+        jComboBoxCategoria = new JComboBoxAddItemsField();
         jBtnAgregarCategoria = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jComboBoxMarca = new JComboBoxAddItemsField(new Object[]{1,2,3});
+        jComboBoxMarca = new JComboBoxAddItemsField();
         jBtnAgregarMarca = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
@@ -113,13 +107,13 @@ public class frmRegistroProductos extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jTxtPrecioCosto = new JFocusedTextField(java.awt.Color.yellow,java.awt.Color.blue);
         checkPrecioVenta = new java.awt.Checkbox();
-        checkbox3 = new java.awt.Checkbox();
+        checkPrecioVentaCambiarPrecio = new java.awt.Checkbox();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jTxtCodigo = new JFocusedTextField(java.awt.Color.yellow,java.awt.Color.blue);
         jTxtCodigoProducto5 = new JFocusedTextField(java.awt.Color.yellow,java.awt.Color.blue);
         jLabel9 = new javax.swing.JLabel();
-        jTxtCodigoProducto6 = new JFocusedTextField(java.awt.Color.yellow,java.awt.Color.blue);
+        jTxtCodigoBarras = new JFocusedTextField(java.awt.Color.yellow,java.awt.Color.blue);
         jSeparator3 = new javax.swing.JSeparator();
         jLabel10 = new javax.swing.JLabel();
         jTxtStock = new JFocusedTextField(java.awt.Color.yellow,java.awt.Color.blue);
@@ -212,8 +206,8 @@ public class frmRegistroProductos extends javax.swing.JFrame {
 
         checkPrecioVenta.setLabel("Automático");
 
-        checkbox3.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        checkbox3.setLabel("Permitir cambiar el precio en el momento de la venta");
+        checkPrecioVentaCambiarPrecio.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        checkPrecioVentaCambiarPrecio.setLabel("Permitir cambiar el precio en el momento de la venta");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel7.setText("Peso bruto");
@@ -232,12 +226,12 @@ public class frmRegistroProductos extends javax.swing.JFrame {
         jTxtCodigoProducto5.setPreferredSize(new java.awt.Dimension(150, 35));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel9.setText("Código extra");
+        jLabel9.setText("Código de barras");
 
-        jTxtCodigoProducto6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTxtCodigoProducto6.setMargin(new java.awt.Insets(2, 5, 2, 2));
-        jTxtCodigoProducto6.setMinimumSize(new java.awt.Dimension(150, 35));
-        jTxtCodigoProducto6.setPreferredSize(new java.awt.Dimension(150, 35));
+        jTxtCodigoBarras.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTxtCodigoBarras.setMargin(new java.awt.Insets(2, 5, 2, 2));
+        jTxtCodigoBarras.setMinimumSize(new java.awt.Dimension(150, 35));
+        jTxtCodigoBarras.setPreferredSize(new java.awt.Dimension(150, 35));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel10.setText("Stock actual");
@@ -361,10 +355,10 @@ public class frmRegistroProductos extends javax.swing.JFrame {
                                     .addComponent(jTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(checkCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(24, 24, 24)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTxtCodigoProducto6, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(0, 0, 0)
+                                    .addComponent(jTxtCodigoBarras, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
                                 .addGroup(jPanelControlesLayout.createSequentialGroup()
                                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(0, 0, 0)
@@ -386,7 +380,7 @@ public class frmRegistroProductos extends javax.swing.JFrame {
                                         .addComponent(checkPrecioVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(120, 120, 120))))
                     .addGroup(jPanelControlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(checkbox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(checkPrecioVentaCambiarPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanelControlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 682, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 682, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -410,7 +404,7 @@ public class frmRegistroProductos extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanelControlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTxtCodigoProducto6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jTxtCodigoBarras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelControlesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTxtDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -444,7 +438,7 @@ public class frmRegistroProductos extends javax.swing.JFrame {
                                     .addComponent(jTxtPrecioVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanelControlesLayout.createSequentialGroup()
                                 .addGap(22, 22, 22)
-                                .addComponent(checkbox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(checkPrecioVentaCambiarPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelControlesLayout.createSequentialGroup()
                         .addGap(50, 50, 50)
@@ -531,12 +525,12 @@ public class frmRegistroProductos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Checkbox checkCodigo;
     private java.awt.Checkbox checkPrecioVenta;
-    private java.awt.Checkbox checkbox3;
+    private java.awt.Checkbox checkPrecioVentaCambiarPrecio;
     private javax.swing.JButton jBtnAgregarCategoria;
     private javax.swing.JButton jBtnAgregarMarca;
     private javax.swing.JButton jBtnGuardar;
-    private javax.swing.JComboBox<String> jComboBoxCategoria;
-    private javax.swing.JComboBox<String> jComboBoxMarca;
+    private javax.swing.JComboBox<Map.Entry<Integer,String>> jComboBoxCategoria;
+    private javax.swing.JComboBox<Map.Entry<Integer,String>> jComboBoxMarca;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -561,9 +555,9 @@ public class frmRegistroProductos extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTextField jTxtCodigo;
+    private javax.swing.JTextField jTxtCodigoBarras;
     private javax.swing.JTextField jTxtCodigoProducto;
     private javax.swing.JTextField jTxtCodigoProducto5;
-    private javax.swing.JTextField jTxtCodigoProducto6;
     private javax.swing.JTextField jTxtDescripcion;
     private javax.swing.JTextField jTxtGanancia;
     private javax.swing.JTextField jTxtPrecioCosto;
@@ -573,6 +567,26 @@ public class frmRegistroProductos extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void inicializar() {
+        hashMapCategoria = new HashMap<>();
+        hashMapMarca = new HashMap<>();
+        hashMapCategoria.put(0, "-------------------");
+        hashMapMarca.put(0, "-------------------");
+
+        productosController.listarCategoriasProducto().forEach(x -> {
+            hashMapCategoria.put(x.getCodigo(), x.getNombre());
+        });
+
+        productosController.listarMarcas().forEach(x -> {
+            hashMapMarca.put(x.getCodigo(), x.getNombre());
+        });
+
+        hashMapCategoria.entrySet().forEach((entry) -> {
+            jComboBoxCategoria.addItem(entry);
+        });
+
+        hashMapMarca.entrySet().forEach((entry) -> {
+            jComboBoxMarca.addItem(entry);
+        });
 
         jPanelGanancia.setVisible(false);
 
@@ -584,9 +598,10 @@ public class frmRegistroProductos extends javax.swing.JFrame {
         });
 
         checkPrecioVenta.addItemListener((ItemEvent e) -> {
-            jPanelGanancia.setVisible(((Checkbox) e.getSource()).getState());
-            if (jPanelGanancia.isVisible()) {
-                jTxtPrecioVenta.setEnabled(false);
+            boolean checked = ((Checkbox) e.getSource()).getState();
+            jPanelGanancia.setVisible(checked);
+            jTxtPrecioVenta.setEnabled(!checked);
+            if (checked) {
                 jTxtGanancia.setText("");
             }
         });
@@ -595,7 +610,7 @@ public class frmRegistroProductos extends javax.swing.JFrame {
 
         jTxtPrecioVenta.addKeyListener(new OnlyDigitWithDecimalsAdapter());
         jTxtGanancia.addKeyListener(new OnlyDigitWithDecimalsAdapter());
-        jTxtPrecioVenta.addKeyListener(new OnlyDigitWithDecimalsAdapter());
+        jTxtPrecioCosto.addKeyListener(new OnlyDigitWithDecimalsAdapter());
 
         Action actionF2 = new AbstractAction(
                 "<html>Guardar (F2)</html>") {
@@ -638,7 +653,7 @@ public class frmRegistroProductos extends javax.swing.JFrame {
 
             fileToSave = fileChooser.getSelectedFile();
             ImageIcon icono = new ImageIcon(fileChooser.getSelectedFile().getPath());
-            icono = new ImageIcon(icono.getImage().getScaledInstance(191, 191, Image.SCALE_DEFAULT));
+            icono = new ImageIcon(icono.getImage().getScaledInstance(191, 191, Image.SCALE_SMOOTH));
 
             jLblTextoImagen.setVisible(false);
             jLblImagen.setIcon(icono);
@@ -664,19 +679,34 @@ public class frmRegistroProductos extends javax.swing.JFrame {
         if (!esValido) {
             showMessageDialog(this, "Ingrese todos los datos correctamente.");
         } else {
+            String imagePath = "";
+            if (fileToSave != null) {
+                imagePath = PATH_RECURSOS + fileToSave.getName();
+            }
             productosController.
                     agregarProducto(
+                            checkCodigo.getState(),
                             jTxtCodigo.getText(),
                             jTxtDescripcion.getText(),
-                            Double.parseDouble(jTxtPrecioVenta.getText()), 1);
+                            Double.parseDouble(jTxtPrecioVenta.getText()),
+                            Double.parseDouble(jTxtPrecioCosto.getText()),
+                            checkPrecioVentaCambiarPrecio.getState(),
+                            imagePath,
+                            jTxtCodigoBarras.getText(),
+                            ((Map.Entry<Integer, Object>) jComboBoxCategoria.getSelectedItem()).getKey(),
+                            ((Map.Entry<Integer, Object>) jComboBoxMarca.getSelectedItem()).getKey());
 
-            File destinationFile = new File(DataReader.getUsersProjectRootDirectory() + "\\src\\resources\\" + fileToSave.getName());
-            try {
-                DataReader.copyFile(fileToSave, destinationFile);
-            } catch (IOException ex) {
-                System.out.println("Error al grabar " + ex);
+            if (fileToSave != null) {
+                File destinationFile = new File(
+                        DataReader.getUsersProjectRootDirectory()
+                        + imagePath
+                );
+                try {
+                    DataReader.copyFile(fileToSave, destinationFile);
+                } catch (IOException ex) {
+                    System.out.println("Error al grabar " + ex);
+                }
             }
-
         }
     }
 

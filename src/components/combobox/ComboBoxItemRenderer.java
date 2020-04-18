@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.Map;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -51,10 +52,13 @@ public class ComboBoxItemRenderer extends JPanel implements ListCellRenderer {
             boolean isSelected,
             boolean cellHasFocus
     ) {
+        if (value == null) {
+            return this;
+        }
 
-        // set country name
-        labelItem.setText(value.toString());
+        Map.Entry<Integer, String> entry = (Map.Entry<Integer, String>) value;
 
+        labelItem.setText(entry.getValue());
         // set country flag
         //labelItem.setIcon(new ImageIcon(countryItem[1]));
         if (isSelected) {

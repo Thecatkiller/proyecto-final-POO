@@ -15,6 +15,7 @@ public final class Constants {
 
     public static final String STRING_EMPTY = "";
     private static final String PATH_ARCHIVOS = "src/resources/data/";
+    public static final String PATH_RECURSOS = "\\src\\resources\\";
     public static final String SEPARADOR_ARCHIVO = "\\|";
     public static final String SEPARADOR_ARCHIVO_INTERNO = "|";
     public static final String FORMATO_FECHA_DD_MM_YYYY = "dd-MM-yyyy";
@@ -31,7 +32,8 @@ public final class Constants {
         CARGOS_COLABORADOR("cargo.txt", "model.CargoColaborador"),
         CATEROGORIA_PRODUCTOS("categoria_productos.txt", "model.CategoriaProducto"),
         COLABORADORES("colaboradores.txt", "model.Colaborador"),
-        PROVEEDORES("proveedor.txt", "model.Proveedor");
+        PROVEEDORES("proveedor.txt", "model.Proveedor"),
+        MARCAS("marcas.txt", "model.Marca");
 
         private final String path;
         private final String modelPackage;

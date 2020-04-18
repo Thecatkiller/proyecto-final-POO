@@ -10,6 +10,7 @@ import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.Map;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicComboBoxEditor;
@@ -54,8 +55,8 @@ public class ComboBoxItemEditor extends BasicComboBoxEditor {
         if (item == null) {
             return;
         }
-
-        labelItem.setText(item.toString());
+        Map.Entry<Integer, String> entry = (Map.Entry<Integer, String>) item;
+        labelItem.setText(entry.getValue());
         //labelItem.setIcon(new ImageIcon(countryItem[1]));
     }
 }

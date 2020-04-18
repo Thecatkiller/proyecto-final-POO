@@ -15,9 +15,14 @@ Funcionalidades:
 ### 2.1 Formulario productos
 ![Imagen productos](/images/productos.png)
 
+
 ### 2.1 Registro productos
 ![Imagen productos](/images/productos_registro.png)
+
+
 ![Imagen productos logo](/images/productos_registro_2.png)
+
+
 
 ## 3. Ventas
 ![Imagen productos](/images/ventas.png)

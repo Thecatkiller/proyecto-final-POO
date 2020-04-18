@@ -25,7 +25,7 @@ public class StockProducto implements LectorDatos {
     public void leerObjeto(String linea) throws Exception {
         String[] datos = linea.split(SEPARADOR_ARCHIVO, INDICE_LECTOR_SPLIT);
         this.cantidad = Integer.parseInt(datos[0]);
-        this.producto = prdController.getProductoById(datos[1]);
+        this.producto = prdController.getProductoByCodigo(datos[1]);
     }
 
 }

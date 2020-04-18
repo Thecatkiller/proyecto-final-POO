@@ -18,14 +18,13 @@ public class JComboBoxAddItemsField extends JComboBox {
 
     private final DefaultComboBoxModel model;
 
-    public JComboBoxAddItemsField(Object[] list) {
+    /*public JComboBoxAddItemsField(Object[] list) {
         super();
         model = new DefaultComboBoxModel();
         addElements(list);
         setRenderer(new ComboBoxItemRenderer());
         setEditor(new ComboBoxItemEditor());
-    }
-
+    }*/
     public JComboBoxAddItemsField() {
         super();
         model = new DefaultComboBoxModel();
