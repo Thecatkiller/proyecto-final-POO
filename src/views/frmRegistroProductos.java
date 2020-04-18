@@ -60,13 +60,16 @@ public class frmRegistroProductos extends javax.swing.JFrame {
     private File fileToSave = null;
     private HashMap<Integer, String> hashMapCategoria;
     private HashMap<Integer, String> hashMapMarca;
+    private final MasterJInternalFrame parent;
 
     /**
      * Creates new form frmRegistroProductos
+     *
+     * @param parent
      */
-    public frmRegistroProductos() {
+    public frmRegistroProductos(MasterJInternalFrame parent) {
         initComponents();
-
+        this.parent = parent;
         super.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         inicializar();
@@ -707,7 +710,11 @@ public class frmRegistroProductos extends javax.swing.JFrame {
                     System.out.println("Error al grabar " + ex);
                 }
             }
+
+            parent.onChildClosing();
+            this.dispose();
         }
+
     }
 
     private void agregarMarca() {

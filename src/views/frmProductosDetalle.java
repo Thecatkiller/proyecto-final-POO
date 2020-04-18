@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Diego Sebastian
  */
-public class frmProductosDetalle extends JInternalFrameCustom {
+public class frmProductosDetalle extends MasterJInternalFrame {
 
     private static final ProductosController prdController = new ProductosController();
 
@@ -256,7 +256,12 @@ public class frmProductosDetalle extends JInternalFrameCustom {
     }
 
     private void agregarNuevoProducto() {
-        frmRegistroProductos frmRegistroProductos = new frmRegistroProductos();
+        frmRegistroProductos frmRegistroProductos = new frmRegistroProductos(this);
         frmRegistroProductos.setVisible(true);
+    }
+
+    @Override
+    public void onChildClosing() {
+        mostrarRegistrosTabla();
     }
 }
