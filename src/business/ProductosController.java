@@ -46,7 +46,9 @@ public class ProductosController {
                 codigo,
                 nombre,
                 precio,
-                this.getCategoriaProductoById(idCategoriaProducto)
+                this.getCategoriaProductoById(idCategoriaProducto),
+                "",
+                ""
         );
 
         DataReader.agregarRegistro(Constants.Archivos.PRODUCTOS, producto);

@@ -95,7 +95,7 @@ public class Proveedor implements LectorDatos {
 
     @Override
     public void leerObjeto(String linea) throws Exception {
-        String[] datos = linea.split(SEPARADOR_ARCHIVO);
+        String[] datos = linea.split(SEPARADOR_ARCHIVO, INDICE_LECTOR_SPLIT);
         this.codigo = datos[0];
         this.nombre = datos[1];
         this.razonSocial = datos[2];

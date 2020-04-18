@@ -26,6 +26,14 @@ public class JComboBoxAddItemsField extends JComboBox {
         setEditor(new ComboBoxItemEditor());
     }
 
+    public JComboBoxAddItemsField() {
+        super();
+        model = new DefaultComboBoxModel();
+        setRenderer(new ComboBoxItemRenderer());
+        setEditor(new ComboBoxItemEditor());
+        updateUI();
+    }
+
     private void addElements(Object[] list) {
         for (Object list1 : list) {
             model.addElement(list1);

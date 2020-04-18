@@ -67,7 +67,7 @@ public class Colaborador extends Persona implements LectorDatos {
 
     @Override
     public void leerObjeto(String linea) throws Exception {
-        String[] datos = linea.split(SEPARADOR_ARCHIVO);
+        String[] datos = linea.split(SEPARADOR_ARCHIVO, INDICE_LECTOR_SPLIT);
         ColaboradorController cController = new ColaboradorController();
 
         this.nombres = datos[0];

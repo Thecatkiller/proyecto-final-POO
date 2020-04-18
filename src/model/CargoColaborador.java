@@ -44,7 +44,7 @@ public class CargoColaborador implements LectorDatos {
 
     @Override
     public void leerObjeto(String linea) {
-        String[] datos = linea.split(SEPARADOR_ARCHIVO);
+        String[] datos = linea.split(SEPARADOR_ARCHIVO, INDICE_LECTOR_SPLIT);
         this.identificador = Integer.parseInt(datos[0]);
         this.nombreCargo = datos[1];
     }
