@@ -32,6 +32,10 @@ La información será recopilada mediante entrevistas al personal de la tienda m
 También se examinará los documentos que muestren información acerca de las ventas y los movimientos de stock de la tienda.
 &nbsp;&nbsp;
 #### 4. Diseño de la base de datos
+
+###### Diseño conceptual
+![Imagen diseño conceptual](/images/diseño_conceptual.png)
+
 &nbsp;&nbsp;
 #### 5. Selección del SGBB
 &nbsp;&nbsp;
