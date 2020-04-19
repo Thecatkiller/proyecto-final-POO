@@ -9,13 +9,18 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  *
@@ -73,9 +78,9 @@ public final class DataReader {
         }
     }
 
-    public static <T> List<T> leerArchivoLista(Constants.Archivos archivo) {
+    public static <Tipo> List<Tipo> leerArchivoLista(Constants.Archivos archivo) {
         final File archivoLeer = new File(archivo.getPath());
-        List<T> lista;
+        List<Tipo> lista;
         try {
             final FileReader lector = new FileReader(archivoLeer);
             final BufferedReader buffer = new BufferedReader(lector);
@@ -83,7 +88,7 @@ public final class DataReader {
             lista = new ArrayList<>();
             String linea;
             while ((linea = buffer.readLine()) != null) {
-                T obj = (T) Class.forName(archivo.getModelPackage()).newInstance();
+                Tipo obj = (Tipo) Class.forName(archivo.getModelPackage()).newInstance();
                 Method method = obj.getClass().getMethod(NOMBRE_METODO_LEER, String.class);
                 method.invoke(obj, linea);
                 lista.add(obj);
@@ -93,6 +98,53 @@ public final class DataReader {
             lista = null;
         }
         return lista;
+    }
+
+    public static void reemplazar(
+            Constants.Archivos archivo,
+            Object objInicial,
+            Object objFinal
+    ) {
+        try {
+            Path path = Paths.get(archivo.getPath());
+            try (Stream<String> lines = Files.lines(path)) {
+                String datoInicial = objInicial.toString();
+                String datoFinal = objFinal.toString();
+
+                System.out.println("Inicial : " + datoInicial);
+                System.out.println("Final   : " + datoFinal);
+
+                List<String> replaced = lines
+                        .map(line -> {
+                            if (((String) line).equals(datoInicial)) {
+                                System.out.println("Coincide : " + line);
+                                return datoFinal;
+                            }
+                            return line;
+                        })
+                        .collect(Collectors.toList());
+
+                System.out.println();
+                System.out.println("Listado : " + replaced);
+
+                try (BufferedWriter writer = new BufferedWriter(
+                        new FileWriter(archivo.getPath(), false)
+                )) {
+                    int contador = 0;
+                    for (String line : replaced) {
+                        if (contador == replaced.size() - 1) {
+                            writer.write(line);
+                        } else {
+                            writer.write(line + System.lineSeparator());
+                        }
+
+                        contador++;
+                    }
+                }
+            }
+        } catch (IOException e) {
+
+        }
     }
 
     public static void agregarRegistro(Constants.Archivos archivo, Object data) {

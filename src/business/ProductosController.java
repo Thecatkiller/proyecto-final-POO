@@ -6,7 +6,10 @@ import exception.CategoriaNoExisteException;
 import exception.MarcaProductoNoExiste;
 import exception.ProductoNoExisteException;
 import exception.ProductoYaExisteException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import model.CategoriaProducto;
 import model.Estado;
@@ -30,6 +33,7 @@ public class ProductosController {
 
     public List<Producto> listarProductos() {
         List<Producto> listado = DataReader.leerArchivoLista(Constants.Archivos.PRODUCTOS);
+
         return listado
                 .stream()
                 .filter(x -> !x.getEstadoProducto().equals(Estado.ELIMINADO))
@@ -65,7 +69,14 @@ public class ProductosController {
         if (producto == null) {
             throw new ProductoNoExisteException();
         } else {
-            System.out.println("Aca eliminar " + producto);
+            try {
+                Producto productoModificado = producto.clone();
+                productoModificado.setEstadoProducto(Estado.ELIMINADO);
+                DataReader.reemplazar(Constants.Archivos.PRODUCTOS, producto, productoModificado);
+                System.out.println("Aca eliminar " + producto);
+            } catch (CloneNotSupportedException ex) {
+                Logger.getLogger(ProductosController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

@@ -1,2 +1,5 @@
 F51BEE49-5DF3-42|3|PIANO YAMAHA P125|4999.9|3500.0|false|\src\resources\yamaha_p125_review_02.jpg||1|ACTIVO
 6F9675B1-70D0-40|1|dsadas|21.0|321.0|false|||1|ACTIVO
+6F9675B1-70D0-41|1|dsadas|21.0|321.0|false|||1|ACTIVO
+6F9675B1-70D0-45|1|dsadas|21.0|321.0|false|||1|ACTIVO
+6F9675B1-70D0-47|1|dsadas|21.0|321.0|false|||1|ACTIVO

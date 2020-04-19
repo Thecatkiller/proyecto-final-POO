@@ -9,7 +9,7 @@ import static complements.Constants.SEPARADOR_ARCHIVO_INTERNO;
  *
  * @author Diego Sebastian
  */
-public class Producto implements LectorDatos {
+public class Producto implements LectorDatos, Cloneable {
 
     private String codigo;
     private String nombre;
@@ -109,6 +109,10 @@ public class Producto implements LectorDatos {
         return estadoProducto;
     }
 
+    public void setEstadoProducto(Estado estadoProducto) {
+        this.estadoProducto = estadoProducto;
+    }
+
     @Override
     public String toString() {
         return this.codigo + SEPARADOR_ARCHIVO_INTERNO
@@ -137,6 +141,11 @@ public class Producto implements LectorDatos {
         this.codigoBarras = datos[7];
         this.marcaProducto = pController.getMarcaByCodigo(Integer.parseInt(datos[8]));
         this.estadoProducto = Estado.valueOf(datos[9]);
+    }
+
+    @Override
+    public Producto clone() throws CloneNotSupportedException {
+        return (Producto) super.clone();
     }
 
 }

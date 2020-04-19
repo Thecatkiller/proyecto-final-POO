@@ -33,7 +33,8 @@ public final class Constants {
         CATEROGORIA_PRODUCTOS("categoria_productos.txt", "model.CategoriaProducto"),
         COLABORADORES("colaboradores.txt", "model.Colaborador"),
         PROVEEDORES("proveedor.txt", "model.Proveedor"),
-        MARCAS("marcas.txt", "model.Marca");
+        MARCAS("marcas.txt", "model.Marca"),
+        STOCK("stock,txt", "model.StockProducto");
 
         private final String path;
         private final String modelPackage;

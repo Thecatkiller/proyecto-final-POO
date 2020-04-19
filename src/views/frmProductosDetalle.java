@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
 import static javax.swing.JOptionPane.YES_OPTION;
+import model.Producto;
 
 /**
  *
@@ -292,6 +293,7 @@ public class frmProductosDetalle extends MasterJInternalFrame {
             if (YES_OPTION == respuesta) {
                 String codigo = (String) jTblProductos.getModel().getValueAt(indiceBorrar, 1);
                 prdController.eliminarProductoById(codigo);
+                mostrarRegistrosTabla();
             }
         } else {
             showMessageDialog(this, "Debe elegir un registro para borrar !");
