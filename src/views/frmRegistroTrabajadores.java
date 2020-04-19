@@ -7,6 +7,7 @@ package views;
 
 import business.ColaboradorController;
 import static complements.Constants.DATE_FORMATE_DD_MM_YYYY;
+import javax.swing.JFrame;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
 import model.CargoColaborador;
@@ -19,15 +20,19 @@ import util.UIHelper;
  *
  * @author Diego Sebastian
  */
-public class frmRegistroTrabajadores extends javax.swing.JInternalFrame {
+public class frmRegistroTrabajadores extends javax.swing.JFrame {
 
     private static final ColaboradorController colaboradorController = new ColaboradorController();
+    private final MasterJInternalFrame parent;
 
     /**
      * Creates new form frmRegistroTrabajadores
+     *
+     * @param parent
      */
-    public frmRegistroTrabajadores() {
+    public frmRegistroTrabajadores(MasterJInternalFrame parent) {
         initComponents();
+        super.setExtendedState(JFrame.MAXIMIZED_BOTH);
         colaboradorController.getCargosColaborador().forEach(x -> {
             jCmbCargo.addItem(x);
         });
@@ -51,6 +56,7 @@ public class frmRegistroTrabajadores extends javax.swing.JInternalFrame {
         UIHelper.cambiarEstadoControles(jPanelControles, false);
 
         mostrarRegistrosTabla();
+        this.parent = parent;
     }
 
     /**
@@ -343,6 +349,9 @@ public class frmRegistroTrabajadores extends javax.swing.JInternalFrame {
 
             mostrarRegistrosTabla();
             nuevo();
+
+            parent.onChildClosing();
+            this.dispose();
         }
     }
 

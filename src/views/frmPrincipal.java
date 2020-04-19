@@ -330,8 +330,8 @@ public class frmPrincipal extends javax.swing.JFrame {
         //frmPuntoVenta.setLocation(-1, -1);
         jInternalFramePrincipal.add(frmPuntoVenta);
 
-        frmRegistroTrabajadores frmRegistroTrabajadores = new frmRegistroTrabajadores();
-        jInternalFramePrincipal.add(frmRegistroTrabajadores);
+        frmTrabajadores frmTrabajadores = new frmTrabajadores();
+        jInternalFramePrincipal.add(frmTrabajadores);
 
         frmProductos frmProductos = new frmProductos();
         jInternalFramePrincipal.add(frmProductos);
@@ -343,7 +343,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         jInternalFramePrincipal.add(frmRegistroProveedor);
 
         mapFormularios.put(Formularios.PUNTO_VENTA, frmPuntoVenta);
-        mapFormularios.put(Formularios.TRABAJADORES, frmRegistroTrabajadores);
+        mapFormularios.put(Formularios.TRABAJADORES, frmTrabajadores);
         mapFormularios.put(Formularios.PRODUCTOS, frmProductos);
         mapFormularios.put(Formularios.STOCK, frmIngresoStock);
         mapFormularios.put(Formularios.PROVEEDORES, frmRegistroProveedor);
