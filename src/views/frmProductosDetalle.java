@@ -17,6 +17,8 @@ import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
 import static javax.swing.JOptionPane.YES_OPTION;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import model.Producto;
 
 /**
@@ -33,14 +35,8 @@ public class frmProductosDetalle extends MasterJInternalFrame {
     public frmProductosDetalle() {
         initComponents();
 
-        new TextPlaceholder(" Encontrar producto por código o descripción ", jTxtBusquedaProducto);
+        inicializar();
 
-        setContentAreaFilledToButtons();
-
-        jChoiceTipoBusqueda.add("Mostrar: Todos los productos");
-        jChoiceTipoBusqueda.add("Mostrar: Productos con poco stock");
-        jChoiceTipoBusqueda.add("Mostrar: Solo productos ya vendidos");
-        mostrarRegistrosTabla();
     }
 
     /**
@@ -298,6 +294,70 @@ public class frmProductosDetalle extends MasterJInternalFrame {
         } else {
             showMessageDialog(this, "Debe elegir un registro para borrar !");
         }
+
+    }
+
+    private void inicializar() {
+        new TextPlaceholder(" Encontrar producto por código o descripción ", jTxtBusquedaProducto);
+
+        setContentAreaFilledToButtons();
+
+        jChoiceTipoBusqueda.add("Mostrar: Todos los productos");
+        jChoiceTipoBusqueda.add("Mostrar: Productos con poco stock");
+        jChoiceTipoBusqueda.add("Mostrar: Solo productos ya vendidos");
+        mostrarRegistrosTabla();
+
+        jTxtBusquedaProducto.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                cambioTexto(e);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                cambioTexto(e);
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                cambioTexto(e);
+            }
+
+            public void cambioTexto(DocumentEvent e) {
+                String texto = jTxtBusquedaProducto.getText().toLowerCase();
+
+                if (!texto.isEmpty()) {
+                    DefaultTableModel model = (DefaultTableModel) jTblProductos
+                            .getModel();
+                    model.getDataVector().removeAllElements();
+                    model.fireTableDataChanged();
+
+                    prdController.listarProductos()
+                            .stream()
+                            .filter(x -> x.getNombre().toLowerCase().contains(texto)
+                            || x.getCodigo().toLowerCase().contains(texto)
+                            )
+                            .forEach(x -> {
+                                model.addRow(
+                                        new Object[]{
+                                            x.getNombre(),
+                                            x.getCodigo(),
+                                            0,
+                                            0,
+                                            0,
+                                            x.getPrecioVenta(),
+                                            x.getCategoriaProducto().getNombre(),
+                                            0,
+                                            "",
+                                            "",
+                                            x.getMarcaProducto().getNombre()
+                                        });
+                            });
+                } else {
+                    mostrarRegistrosTabla();
+                }
+            }
+        });
 
     }
 }
