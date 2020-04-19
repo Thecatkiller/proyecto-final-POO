@@ -196,10 +196,14 @@ public class frmProductos extends JInternalFrameCustom {
         setGreyButtons();
         frmProductosDetalle frmProductosDetalle = new frmProductosDetalle();
         jInternalFramePrincipal.add(frmProductosDetalle);
+
+        frmOperacionStock frmOperacionStock = new frmOperacionStock();
+        jInternalFramePrincipal.add(frmOperacionStock);
+
         mapFormularios.put(Formularios.PRODUCTOS, frmProductosDetalle);
         mapFormularios.put(Formularios.INVENTARIO, frmProductosDetalle);
         mapFormularios.put(Formularios.PROVEEDORES, frmProductosDetalle);
-        mapFormularios.put(Formularios.STOCK, frmProductosDetalle);
+        mapFormularios.put(Formularios.STOCK, frmOperacionStock);
 
     }
 

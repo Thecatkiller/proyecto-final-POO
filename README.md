@@ -66,6 +66,8 @@ También se examinará los documentos que muestren información acerca de las ve
 
 ![Imagen productos logo](/images/productos_registro_2.png)
 
+###### 2.3 Operación de stock
+![Imagen operacion stock](/images/operacion_stock.png)
 
 
 ##### 3. Ventas
