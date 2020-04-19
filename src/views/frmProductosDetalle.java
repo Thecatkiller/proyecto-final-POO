@@ -297,6 +297,5 @@ public class frmProductosDetalle extends MasterJInternalFrame {
             showMessageDialog(this, "Debe elegir un registro para borrar !");
         }
 
-        System.out.println(jTblProductos.getSelectedRow());
     }
 }
