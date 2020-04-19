@@ -11,7 +11,12 @@ import complements.TextPlaceholder;
 import components.JIconTextField;
 import components.JInternalFrameCustom;
 import java.awt.Graphics;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
+import static javax.swing.JOptionPane.YES_OPTION;
 
 /**
  *
@@ -81,6 +86,11 @@ public class frmProductosDetalle extends MasterJInternalFrame {
         jBtnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/resumen_32.png"))); // NOI18N
 
         jBtnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/basura_32.png"))); // NOI18N
+        jBtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEliminarActionPerformed(evt);
+            }
+        });
 
         jBtnEtiqueta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/venta.png"))); // NOI18N
         jBtnEtiqueta.setText("Etiqueta");
@@ -206,6 +216,10 @@ public class frmProductosDetalle extends MasterJInternalFrame {
         agregarNuevoProducto();
     }//GEN-LAST:event_jBtnAgregarActionPerformed
 
+    private void jBtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEliminarActionPerformed
+        eliminar();
+    }//GEN-LAST:event_jBtnEliminarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnAgregar;
@@ -237,6 +251,7 @@ public class frmProductosDetalle extends MasterJInternalFrame {
         DefaultTableModel model = (DefaultTableModel) jTblProductos.getModel();
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
+
         prdController.listarProductos().forEach(x -> {
             model.addRow(
                     new Object[]{
@@ -263,5 +278,25 @@ public class frmProductosDetalle extends MasterJInternalFrame {
     @Override
     public void onChildClosing() {
         mostrarRegistrosTabla();
+    }
+
+    private void eliminar() {
+        int indiceBorrar = jTblProductos.getSelectedRow();
+
+        if (indiceBorrar >= 0) {
+            int respuesta = JOptionPane.showConfirmDialog(
+                    this, "¿Estas seguro de borrar este producto?",
+                    "Borrar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE
+            );
+
+            if (YES_OPTION == respuesta) {
+                String codigo = (String) jTblProductos.getModel().getValueAt(indiceBorrar, 1);
+                prdController.eliminarProductoById(codigo);
+            }
+        } else {
+            showMessageDialog(this, "Debe elegir un registro para borrar !");
+        }
+
+        System.out.println(jTblProductos.getSelectedRow());
     }
 }

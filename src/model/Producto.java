@@ -20,12 +20,35 @@ public class Producto implements LectorDatos {
     private CategoriaProducto categoriaProducto;
     private Marca marcaProducto;
     private boolean cambiarPrecio;
+    private Estado estadoProducto;
 
     public Producto() {
     }
 
     public Producto(
             String codigo,
+            String nombre,
+            double precioVenta,
+            double precioCosto,
+            boolean cambiarPrecio,
+            CategoriaProducto categoriaProducto,
+            String imagen,
+            String codigoBarras,
+            Marca marcaProducto,
+            Estado estadoProducto) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.precioVenta = precioVenta;
+        this.precioCosto = precioCosto;
+        this.cambiarPrecio = cambiarPrecio;
+        this.categoriaProducto = categoriaProducto;
+        this.imagen = imagen;
+        this.codigoBarras = codigoBarras;
+        this.marcaProducto = marcaProducto;
+        this.estadoProducto = estadoProducto;
+    }
+
+    public Producto(String codigo,
             String nombre,
             double precioVenta,
             double precioCosto,
@@ -43,6 +66,7 @@ public class Producto implements LectorDatos {
         this.imagen = imagen;
         this.codigoBarras = codigoBarras;
         this.marcaProducto = marcaProducto;
+        this.estadoProducto = Estado.ACTIVO;
     }
 
     public String getCodigo() {
@@ -81,6 +105,10 @@ public class Producto implements LectorDatos {
         return cambiarPrecio;
     }
 
+    public Estado getEstadoProducto() {
+        return estadoProducto;
+    }
+
     @Override
     public String toString() {
         return this.codigo + SEPARADOR_ARCHIVO_INTERNO
@@ -91,7 +119,8 @@ public class Producto implements LectorDatos {
                 + this.cambiarPrecio + SEPARADOR_ARCHIVO_INTERNO
                 + this.imagen + SEPARADOR_ARCHIVO_INTERNO
                 + this.codigoBarras + SEPARADOR_ARCHIVO_INTERNO
-                + this.getMarcaProducto().getCodigo();
+                + this.getMarcaProducto().getCodigo() + SEPARADOR_ARCHIVO_INTERNO
+                + this.getEstadoProducto().name();
     }
 
     @Override
@@ -107,6 +136,7 @@ public class Producto implements LectorDatos {
         this.imagen = datos[6];
         this.codigoBarras = datos[7];
         this.marcaProducto = pController.getMarcaByCodigo(Integer.parseInt(datos[8]));
+        this.estadoProducto = Estado.valueOf(datos[9]);
     }
 
 }

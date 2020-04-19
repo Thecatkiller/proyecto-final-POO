@@ -4,9 +4,12 @@ import complements.Constants;
 import complements.DataReader;
 import exception.CategoriaNoExisteException;
 import exception.MarcaProductoNoExiste;
+import exception.ProductoNoExisteException;
 import exception.ProductoYaExisteException;
 import java.util.List;
+import java.util.stream.Collectors;
 import model.CategoriaProducto;
+import model.Estado;
 import model.Marca;
 import model.Producto;
 import util.RandomStringUUID;
@@ -26,7 +29,11 @@ public class ProductosController {
     }
 
     public List<Producto> listarProductos() {
-        return DataReader.leerArchivoLista(Constants.Archivos.PRODUCTOS);
+        List<Producto> listado = DataReader.leerArchivoLista(Constants.Archivos.PRODUCTOS);
+        return listado
+                .stream()
+                .filter(x -> !x.getEstadoProducto().equals(Estado.ELIMINADO))
+                .collect(Collectors.toList());
     }
 
     public Marca getMarcaByCodigo(int codigo) {
@@ -51,6 +58,15 @@ public class ProductosController {
                 .filter(x -> x.getCodigo().equals(codigo))
                 .findFirst()
                 .orElse(null);
+    }
+
+    public void eliminarProductoById(String codigo) {
+        Producto producto = this.getProductoByCodigo(codigo);
+        if (producto == null) {
+            throw new ProductoNoExisteException();
+        } else {
+            System.out.println("Aca eliminar " + producto);
+        }
     }
 
     public void agregarProducto(
