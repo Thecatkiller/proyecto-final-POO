@@ -8,7 +8,12 @@ package views;
 import business.ColaboradorController;
 import static complements.Constants.DATE_FORMATE_DD_MM_YYYY;
 import complements.TextPlaceholder;
+import java.util.List;
+import java.util.stream.Collectors;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import model.Colaborador;
 import model.User;
 
 /**
@@ -49,7 +54,7 @@ public class frmTrabajadores extends MasterJInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTblTrabajadores = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 204, 204)));
         jPanel1.setForeground(new java.awt.Color(0, 153, 153));
@@ -143,11 +148,11 @@ public class frmTrabajadores extends MasterJInternalFrame {
 
             },
             new String [] {
-                "Código", "Nombres", "Apellido Paterno", "Apellido Materno", "Fecha Nacimiento", "Sexo", "Tipo Documento", "Documento", "Sueldo", "Cargo", "Estado", "Usuario", "Clave"
+                "Nombres", "Apellido Paterno", "Apellido Materno", "Fecha Nacimiento", "Sexo", "Tipo Documento", "Documento", "Sueldo", "Cargo", "Estado", "Usuario", "Clave"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -194,52 +199,6 @@ public class frmTrabajadores extends MasterJInternalFrame {
 
     }//GEN-LAST:event_jBtnEliminarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    @Override
-    public void onChildClosing() {
-        mostrarRegistrosTabla();
-    }
-
-    private void mostrarRegistrosTabla() {
-        DefaultTableModel model = (DefaultTableModel) jTblTrabajadores.getModel();
-        model.getDataVector().removeAllElements();
-        model.fireTableDataChanged();
-
-        cController.getColaboradores().forEach(x -> {
-            User user = x.getUsuario();
-            String usuario = "";
-            String clave = "";
-            if (user != null) {
-                usuario = user.getUsuario();
-                clave = user.getClave();
-            }
-
-            model.addRow(
-                    new Object[]{
-                        "",
-                        x.getNombres(),
-                        x.getApellidoPaterno(),
-                        x.getApellidoMaterno(),
-                        x.getGenero().getDescripcion(),
-                        DATE_FORMATE_DD_MM_YYYY.format(x.getFechaNacimiento()),
-                        x.getDocumentoIdentidad().getTipo(),
-                        x.getDocumentoIdentidad().getCodigo(),
-                        x.getSueldo(),
-                        x.getCargo().getNombreCargo(),
-                        "",
-                        usuario,
-                        clave
-                    });
-        }
-        );
-    }
-
-    private void inicializar() {
-        new TextPlaceholder(" Encontrar trabajador por documento o nombres ", jTxtBusquedaTrabajador);
-        mostrarRegistrosTabla();
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnAgregar;
@@ -260,4 +219,94 @@ public class frmTrabajadores extends MasterJInternalFrame {
         frmRegistroTrabajadores frmRegistroTrabajadores = new frmRegistroTrabajadores(this);
         frmRegistroTrabajadores.setVisible(true);
     }
+
+    /**
+     * @param args the command line arguments
+     */
+    @Override
+    public void onChildClosing() {
+        mostrarRegistrosTabla();
+    }
+
+    private void mostrarRegistrosTabla(List<Colaborador> colaboradores) {
+        DefaultTableModel model = (DefaultTableModel) jTblTrabajadores.getModel();
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+
+        colaboradores.forEach(x -> {
+            User user = x.getUsuario();
+            String usuario = "";
+            String clave = "";
+            if (user != null) {
+                usuario = user.getUsuario();
+                clave = user.getClave();
+            }
+
+            model.addRow(
+                    new Object[]{
+                        x.getNombres(),
+                        x.getApellidoPaterno(),
+                        x.getApellidoMaterno(),
+                        x.getGenero().getDescripcion(),
+                        DATE_FORMATE_DD_MM_YYYY.format(x.getFechaNacimiento()),
+                        x.getDocumentoIdentidad().getTipo(),
+                        x.getDocumentoIdentidad().getCodigo(),
+                        x.getSueldo(),
+                        x.getCargo().getNombreCargo(),
+                        x.getEstado().toString(),
+                        usuario,
+                        clave
+                    });
+        });
+    }
+
+    private void mostrarRegistrosTabla() {
+        mostrarRegistrosTabla(cController.getColaboradores());
+    }
+
+    private void inicializar() {
+        new TextPlaceholder(" Encontrar trabajador por documento o nombres ", jTxtBusquedaTrabajador);
+        mostrarRegistrosTabla();
+
+        jTxtBusquedaTrabajador.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                cambioTexto(e);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                cambioTexto(e);
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                cambioTexto(e);
+            }
+
+            public void cambioTexto(DocumentEvent e) {
+                String texto = jTxtBusquedaTrabajador.getText().toLowerCase();
+
+                if (!texto.isEmpty()) {
+                    mostrarRegistrosTabla(
+                            cController.getColaboradores()
+                                    .stream()
+                                    .filter(
+                                            x -> x.getNombres()
+                                                    .toLowerCase()
+                                                    .contains(texto)
+                                            || x.getDocumentoIdentidad()
+                                                    .getCodigo()
+                                                    .toLowerCase()
+                                                    .contains(texto)
+                                    ).collect(Collectors.toList())
+                    );
+                } else {
+                    mostrarRegistrosTabla();
+                }
+            }
+        }
+        );
+    }
+
 }

@@ -8,6 +8,7 @@ package views;
 import business.ColaboradorController;
 import business.SecurityController;
 import complements.TextPlaceholder;
+import exception.UsuarioSeEncuentraBloqueadoException;
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
@@ -197,15 +198,19 @@ public class frmLogin extends javax.swing.JFrame {
 
     private void login() {
 
-        User usuario = securityController.login(txtUsuario.getText(), txtPasword.getText());
+        try {
+            User usuario = securityController.login(txtUsuario.getText(), txtPasword.getText());
 
-        if (usuario == null) {
-            showMessageDialog(this, "Credenciales inválidas");
-        } else {
-            GlobalVariables.USUARIO_SESION = usuario;
-            frmPrincipal frm = new frmPrincipal();
-            this.setVisible(false);
-            frm.setVisible(true);
+            if (usuario == null) {
+                showMessageDialog(this, "Credenciales inválidas");
+            } else {
+                GlobalVariables.USUARIO_SESION = usuario;
+                frmPrincipal frm = new frmPrincipal();
+                this.setVisible(false);
+                frm.setVisible(true);
+            }
+        } catch (UsuarioSeEncuentraBloqueadoException ex) {
+            showMessageDialog(this, ex.getMessage());
         }
 
     }

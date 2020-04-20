@@ -15,6 +15,7 @@ import model.CargoColaborador;
 import model.Colaborador;
 import model.Documento;
 import model.Genero;
+import model.User;
 
 /**
  *
@@ -42,6 +43,20 @@ public class ColaboradorController {
         return this.getColaboradores()
                 .stream()
                 .filter(x -> x.getDocumentoIdentidad().equals(documento))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public Colaborador getColaboradorByUserId(int userId) {
+        return this.getColaboradores()
+                .stream()
+                .filter(x -> {
+                    User usuario = x.getUsuario();
+                    if (usuario != null && usuario.getIdentificador() == userId) {
+                        return true;
+                    }
+                    return false;
+                })
                 .findFirst()
                 .orElse(null);
     }

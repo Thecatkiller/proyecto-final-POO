@@ -2,9 +2,12 @@ package business;
 
 import complements.Constants;
 import complements.DataReader;
+import exception.UsuarioSeEncuentraBloqueadoException;
 import exception.UsuarioYaExisteException;
 import java.util.List;
 import java.util.stream.Collectors;
+import model.Colaborador;
+import model.Estado;
 import model.User;
 import util.RandonInteger;
 
@@ -35,14 +38,28 @@ public class SecurityController {
         return DataReader.leerArchivoLista(Constants.Archivos.USUARIOS);
     }
 
-    public User login(String username, String password) {
+    public User login(String username, String password)
+            throws UsuarioSeEncuentraBloqueadoException {
         List<User> usuarios = DataReader.leerArchivoLista(Constants.Archivos.USUARIOS);
 
-        return usuarios.stream()
+        ColaboradorController cController = new ColaboradorController();
+
+        User objUsuario = usuarios.stream()
                 .filter((usuario) -> usuario.getUsuario().equals(username)
                 && usuario.getClave().equals(password))
                 .findFirst()
                 .orElse(null);
+
+        if (objUsuario != null) {
+            Colaborador colaborador = cController.getColaboradorByUserId(objUsuario.getIdentificador());
+            if (colaborador != null) {
+                if (!colaborador.getEstado().equals(Estado.ACTIVO)) {
+                    throw new UsuarioSeEncuentraBloqueadoException();
+                }
+            }
+        }
+
+        return objUsuario;
     }
 
     public User getUserById(int userId) {

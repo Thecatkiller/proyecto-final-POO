@@ -18,6 +18,7 @@ public class Colaborador extends Persona implements LectorDatos, Cloneable {
     private double sueldo;
     private CargoColaborador cargo;
     private User usuario;
+    private Estado estado;
 
     public Colaborador() {
 
@@ -44,6 +45,7 @@ public class Colaborador extends Persona implements LectorDatos, Cloneable {
         this.sueldo = sueldo;
         this.cargo = cargo;
         this.usuario = usuario;
+        this.estado = Estado.ACTIVO;
     }
 
     public Colaborador(
@@ -66,6 +68,7 @@ public class Colaborador extends Persona implements LectorDatos, Cloneable {
         this.sueldo = sueldo;
         this.cargo = cargo;
         this.usuario = null;
+        this.estado = Estado.ACTIVO;
     }
 
     public double getSueldo() {
@@ -84,22 +87,27 @@ public class Colaborador extends Persona implements LectorDatos, Cloneable {
         this.usuario = usuario;
     }
 
+    public Estado getEstado() {
+        return estado;
+    }
+
     @Override
     public String toString() {
         int userId = -1;
         if (usuario != null) {
             userId = usuario.getIdentificador();
         }
-        return nombres + SEPARADOR_ARCHIVO_INTERNO
-                + apellidoPaterno + SEPARADOR_ARCHIVO_INTERNO
-                + apellidoMaterno + SEPARADOR_ARCHIVO_INTERNO
-                + String.valueOf(sueldo) + SEPARADOR_ARCHIVO_INTERNO
-                + documentoIdentidad.getTipo().name() + SEPARADOR_ARCHIVO_INTERNO
-                + documentoIdentidad.getCodigo() + SEPARADOR_ARCHIVO_INTERNO
-                + genero.name() + SEPARADOR_ARCHIVO_INTERNO
-                + DATE_FORMATE_DD_MM_YYYY.format(fechaNacimiento) + SEPARADOR_ARCHIVO_INTERNO
-                + String.valueOf(cargo.getIdentificador()) + SEPARADOR_ARCHIVO_INTERNO
-                + userId;
+        return this.nombres + SEPARADOR_ARCHIVO_INTERNO
+                + this.apellidoPaterno + SEPARADOR_ARCHIVO_INTERNO
+                + this.apellidoMaterno + SEPARADOR_ARCHIVO_INTERNO
+                + String.valueOf(this.sueldo) + SEPARADOR_ARCHIVO_INTERNO
+                + this.documentoIdentidad.getTipo().name() + SEPARADOR_ARCHIVO_INTERNO
+                + this.documentoIdentidad.getCodigo() + SEPARADOR_ARCHIVO_INTERNO
+                + this.genero.name() + SEPARADOR_ARCHIVO_INTERNO
+                + DATE_FORMATE_DD_MM_YYYY.format(this.fechaNacimiento) + SEPARADOR_ARCHIVO_INTERNO
+                + String.valueOf(this.cargo.getIdentificador()) + SEPARADOR_ARCHIVO_INTERNO
+                + userId + SEPARADOR_ARCHIVO_INTERNO
+                + this.estado.name();
     }
 
     @Override
@@ -119,6 +127,7 @@ public class Colaborador extends Persona implements LectorDatos, Cloneable {
         if (userId != -1) {
             this.usuario = cSecurity.getUserById(userId);
         }
+        this.estado = Estado.valueOf(datos[10]);
     }
 
     @Override
