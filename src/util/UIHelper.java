@@ -67,17 +67,37 @@ public final class UIHelper {
     public static boolean validarCampos(JPanel jPanelControles) {
         Component[] components = jPanelControles.getComponents();
         for (Component component : components) {
-            if (component.getClass().equals(JTextField.class)) {
+            if (isSubclassOf(component.getClass(), JTextField.class)) {
                 if (Constants.STRING_EMPTY.equals(((JTextField) component).getText().trim())) {
                     return false;
                 }
-            } else if (component.getClass().equals(JComboBox.class)) {
+            } else if (isSubclassOf(component.getClass(), JComboBox.class)) {
                 if (((JComboBox) component).getSelectedIndex() == -1) {
                     return false;
                 }
             }
         }
         return true;
+    }
+
+    private static boolean isSubclassOf(final Class<?> clazz, final Class<?> possibleSuperClass) {
+        if (clazz == null || possibleSuperClass == null) {
+            return false;
+        } else if (clazz.equals(possibleSuperClass)) {
+            return true;
+        } else {
+            final boolean isSubclass = isSubclassOf(clazz.getSuperclass(), possibleSuperClass);
+
+            if (!isSubclass && clazz.getInterfaces() != null) {
+                for (final Class<?> inter : clazz.getInterfaces()) {
+                    if (isSubclassOf(inter, possibleSuperClass)) {
+                        return true;
+                    }
+                }
+            }
+
+            return isSubclass;
+        }
     }
 
 }

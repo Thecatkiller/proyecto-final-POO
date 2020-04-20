@@ -340,8 +340,8 @@ public class frmRegistroProductos extends javax.swing.JFrame {
                                     .addComponent(checkCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, 0)
-                                    .addComponent(jTxtCodigoBarras, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTxtCodigoBarras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanelControlesLayout.createSequentialGroup()
                                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(0, 0, 0)
@@ -603,6 +603,13 @@ public class frmRegistroProductos extends javax.swing.JFrame {
             }
         };
         UIHelper.bindKeyToButton(jBtnGuardar, actionF2, "F2");
+
+        jLblCancelar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                cerrar();
+            }
+        });
     }
 
     private void addListenerImage() {
@@ -695,6 +702,11 @@ public class frmRegistroProductos extends javax.swing.JFrame {
             this.dispose();
         }
 
+    }
+
+    private void cerrar() {
+        parent.onChildClosing();
+        this.dispose();
     }
 
     private void agregarMarca() {

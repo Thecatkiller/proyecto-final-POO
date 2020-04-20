@@ -1,6 +1,7 @@
 package model;
 
 import static complements.Constants.SEPARADOR_ARCHIVO_INTERNO;
+import java.util.Objects;
 
 /**
  *
@@ -59,6 +60,28 @@ public class Documento {
     @Override
     public String toString() {
         return this.tipo.name() + SEPARADOR_ARCHIVO_INTERNO + this.codigo;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof Documento)) {
+            return false;
+        }
+        Documento d = (Documento) o;
+
+        return d.getTipo().equals(this.tipo)
+                && d.getCodigo().equals(this.codigo);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + Objects.hashCode(this.tipo);
+        hash = 79 * hash + Objects.hashCode(this.codigo);
+        return hash;
     }
 
 }

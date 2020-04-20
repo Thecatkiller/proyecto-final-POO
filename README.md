@@ -49,6 +49,7 @@ También se examinará los documentos que muestren información acerca de las ve
  - Login
  - Productos
  - Ventas
+ - Trabajadores
 
 ##### 1. Login
 
@@ -72,3 +73,9 @@ También se examinará los documentos que muestren información acerca de las ve
 
 ##### 3. Ventas
 ![Imagen productos](/images/ventas.png)
+
+
+##### 4. Trabajadores
+![Imagen trabajadores](/images/trabajadores.png)
+
+![Imagen registro trabajadores](/images/registro_trabajador.png)

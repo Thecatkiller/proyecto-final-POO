@@ -2,6 +2,7 @@ package model;
 
 import business.LectorDatos;
 import static complements.Constants.SEPARADOR_ARCHIVO;
+import static complements.Constants.SEPARADOR_ARCHIVO_INTERNO;
 
 /**
  *
@@ -33,6 +34,13 @@ public class User implements LectorDatos {
 
     public String getClave() {
         return clave;
+    }
+
+    @Override
+    public String toString() {
+        return this.identificador + SEPARADOR_ARCHIVO_INTERNO
+                + this.usuario + SEPARADOR_ARCHIVO_INTERNO
+                + this.clave;
     }
 
     @Override

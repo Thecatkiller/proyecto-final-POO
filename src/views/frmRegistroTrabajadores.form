@@ -55,8 +55,8 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="11" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Component id="jPanelControles" max="32767" attributes="0"/>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Component id="jPanelControles" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -68,36 +68,6 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="jLabel1" min="-2" pref="125" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel10" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>
-                              <Component id="jLabel11" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>
-                              <Component id="jLabel12" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>
-                              <Component id="jLabel13" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>
-                              <Component id="jLabel14" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTxtApellidoPaterno" min="-2" pref="360" max="-2" attributes="0"/>
-                      <Component id="jTxtNombres" min="-2" pref="500" max="-2" attributes="0"/>
-                      <Component id="jTxtApellidoMaterno" min="-2" pref="360" max="-2" attributes="0"/>
-                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jTxtFechaNacimiento" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
-                          <Component id="jCmbTipoDocumento" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jCmbSexo" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
@@ -105,18 +75,59 @@
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="jTxtDocumento" min="-2" pref="180" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel16" min="-2" pref="125" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel17" min="-2" pref="125" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jLabel17" min="-2" pref="125" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jCmbCargo" min="-2" pref="180" max="-2" attributes="0"/>
-                              <Component id="jTxtSueldo" min="-2" pref="180" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jCmbCargo" min="-2" pref="180" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Component id="jCheckBoxCrearUsuario" min="-2" pref="235" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jTxtSueldo" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
                           </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel1" min="-2" pref="125" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="jLabel10" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>
+                              <Component id="jLabel11" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>
+                              <Component id="jLabel12" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>
+                              <Component id="jLabel13" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>
+                              <Component id="jLabel14" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jTxtApellidoPaterno" min="-2" pref="360" max="-2" attributes="0"/>
+                              <Component id="jTxtApellidoMaterno" min="-2" pref="360" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jTxtFechaNacimiento" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
+                                  <Component id="jCmbTipoDocumento" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jCmbSexo" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="jTxtNombres" min="-2" pref="515" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jSeparator2" alignment="1" max="32767" attributes="0"/>
+                              <Component id="jSeparator4" alignment="1" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jSeparator3" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -142,6 +153,8 @@
                       <Component id="jTxtApellidoMaterno" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel12" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="jTxtFechaNacimiento" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -151,6 +164,8 @@
                       <Component id="jCmbSexo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel14" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jSeparator3" min="-2" pref="14" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jCmbTipoDocumento" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -162,16 +177,23 @@
                       <Component id="jTxtDocumento" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel16" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="jTxtSueldo" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jSeparator4" min="-2" pref="10" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jCmbCargo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel17" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel16" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="jTxtSueldo" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jCmbCargo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel17" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Component id="jCheckBoxCrearUsuario" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -385,6 +407,17 @@
               <Font name="Tahoma" size="13" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Cargo"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSeparator" name="jSeparator2">
+        </Component>
+        <Component class="javax.swing.JSeparator" name="jSeparator3">
+        </Component>
+        <Component class="javax.swing.JSeparator" name="jSeparator4">
+        </Component>
+        <Component class="java.awt.Checkbox" name="jCheckBoxCrearUsuario">
+          <Properties>
+            <Property name="label" type="java.lang.String" value="Crear usuario autom&#xe1;ticamente"/>
           </Properties>
         </Component>
       </SubComponents>

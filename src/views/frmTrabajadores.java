@@ -5,13 +5,19 @@
  */
 package views;
 
+import business.ColaboradorController;
+import static complements.Constants.DATE_FORMATE_DD_MM_YYYY;
 import complements.TextPlaceholder;
+import javax.swing.table.DefaultTableModel;
+import model.User;
 
 /**
  *
  * @author Diego Sebastian
  */
 public class frmTrabajadores extends MasterJInternalFrame {
+
+    private static final ColaboradorController cController = new ColaboradorController();
 
     /**
      * Creates new form frmTrabajadores
@@ -193,11 +199,46 @@ public class frmTrabajadores extends MasterJInternalFrame {
      */
     @Override
     public void onChildClosing() {
+        mostrarRegistrosTabla();
+    }
 
+    private void mostrarRegistrosTabla() {
+        DefaultTableModel model = (DefaultTableModel) jTblTrabajadores.getModel();
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+
+        cController.getColaboradores().forEach(x -> {
+            User user = x.getUsuario();
+            String usuario = "";
+            String clave = "";
+            if (user != null) {
+                usuario = user.getUsuario();
+                clave = user.getClave();
+            }
+
+            model.addRow(
+                    new Object[]{
+                        "",
+                        x.getNombres(),
+                        x.getApellidoPaterno(),
+                        x.getApellidoMaterno(),
+                        x.getGenero().getDescripcion(),
+                        DATE_FORMATE_DD_MM_YYYY.format(x.getFechaNacimiento()),
+                        x.getDocumentoIdentidad().getTipo(),
+                        x.getDocumentoIdentidad().getCodigo(),
+                        x.getSueldo(),
+                        x.getCargo().getNombreCargo(),
+                        "",
+                        usuario,
+                        clave
+                    });
+        }
+        );
     }
 
     private void inicializar() {
         new TextPlaceholder(" Encontrar trabajador por documento o nombres ", jTxtBusquedaTrabajador);
+        mostrarRegistrosTabla();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
