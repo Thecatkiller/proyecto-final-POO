@@ -9,7 +9,7 @@ package exception;
  *
  * @author Diego Sebastian
  */
-public class ColaboradorYaExisteException extends RuntimeException {
+public class ColaboradorYaExisteException extends GeneralException {
 
     public ColaboradorYaExisteException() {
         super("El colaborador ya se encuentra registrado !");

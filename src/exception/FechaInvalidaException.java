@@ -9,7 +9,7 @@ package exception;
  *
  * @author Diego Sebastian
  */
-public class FechaInvalidaException extends RuntimeException {
+public class FechaInvalidaException extends GeneralException {
 
     public FechaInvalidaException(String formatoFecha) {
         super("Formato de fecha inválido. El formato es : " + formatoFecha);

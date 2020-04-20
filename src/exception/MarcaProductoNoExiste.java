@@ -9,7 +9,7 @@ package exception;
  *
  * @author Diego Sebastian
  */
-public class MarcaProductoNoExiste extends RuntimeException {
+public class MarcaProductoNoExiste extends GeneralException {
 
     public MarcaProductoNoExiste() {
         super("La marca de producto no existe !");

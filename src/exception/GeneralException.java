@@ -9,9 +9,14 @@ package exception;
  *
  * @author Diego Sebastian
  */
-public class UsuarioSeEncuentraBloqueadoException extends GeneralException {
+public class GeneralException extends RuntimeException {
 
-    public UsuarioSeEncuentraBloqueadoException() {
-        super("El usuario se encuentra bloqueado !");
+    public GeneralException(String message) {
+        super(message);
     }
+
+    public GeneralException() {
+        super("Error generico");
+    }
+
 }

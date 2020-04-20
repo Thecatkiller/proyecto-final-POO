@@ -9,7 +9,7 @@ package exception;
  *
  * @author Diego Sebastian
  */
-public class CategoriaNoExisteException extends RuntimeException {
+public class CategoriaNoExisteException extends GeneralException {
 
     public CategoriaNoExisteException() {
         super("La categoria de producto no existe !");

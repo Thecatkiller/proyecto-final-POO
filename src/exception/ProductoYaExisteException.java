@@ -9,7 +9,7 @@ package exception;
  *
  * @author Diego Sebastian
  */
-public class ProductoYaExisteException extends RuntimeException {
+public class ProductoYaExisteException extends GeneralException {
 
     public ProductoYaExisteException() {
         super("El producto ya existe !");

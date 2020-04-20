@@ -9,7 +9,7 @@ package exception;
  *
  * @author Diego Sebastian
  */
-public class UsuarioYaExisteException extends RuntimeException {
+public class UsuarioYaExisteException extends GeneralException {
 
     public UsuarioYaExisteException() {
         super("El usuario ya existe !");

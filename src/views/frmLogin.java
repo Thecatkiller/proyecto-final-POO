@@ -8,6 +8,7 @@ package views;
 import business.ColaboradorController;
 import business.SecurityController;
 import complements.TextPlaceholder;
+import exception.GeneralException;
 import exception.UsuarioSeEncuentraBloqueadoException;
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
@@ -209,7 +210,7 @@ public class frmLogin extends javax.swing.JFrame {
                 this.setVisible(false);
                 frm.setVisible(true);
             }
-        } catch (UsuarioSeEncuentraBloqueadoException ex) {
+        } catch (GeneralException ex) {
             showMessageDialog(this, ex.getMessage());
         }
 
